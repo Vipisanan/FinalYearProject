@@ -1,0 +1,6 @@
+.bg-login-voter{
+  position: absolute;
+  width: 98%;
+  height: 98%;
+  background-image: url("../../assets/img/voter/bg_new_banner_img_300x.jpg");
+}
