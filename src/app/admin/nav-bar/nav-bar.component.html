@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">
+<nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" routerLink="admin" >
     <img src="/assets/img/s-lanka-logo.png" width="45" height="45" alt="">
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +12,10 @@
         <a mat-button [matMenuTriggerFor]="animals" class="nav-link" >Admin <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a mat-button class="nav-link" routerLink="result" >Election result</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a mat-button class="nav-link" href="#">Pricing</a>
       </li>
     </ul>
     <span class="navbar-text">
@@ -24,11 +24,15 @@
   </div>
 </nav>
 
+<img class="bg-img" src="/assets/img/Admin/Fingerprint.png" alt="">
 
 <!--<button mat-button [matMenuTriggerFor]="animals">Animal index</button>-->
 
 <mat-menu #animals="matMenu">
-  <button mat-menu-item routerLink="voter-register">Register User(Voter)</button>
+  <button mat-menu-item routerLink="voter-register">Register user(Voter)</button>
+  <button mat-menu-item routerLink="party-register">Register party</button>
+  <button mat-menu-item routerLink="candidate-register">Register candidate</button>
+  <button mat-menu-item routerLink="add-election">Add Election</button>
   <button mat-menu-item [matMenuTriggerFor]="vertebrates">Vertebrates</button>
   <button mat-menu-item [matMenuTriggerFor]="invertebrates">Invertebrates</button>
 </mat-menu>

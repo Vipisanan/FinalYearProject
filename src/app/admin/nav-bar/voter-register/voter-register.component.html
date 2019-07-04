@@ -1,0 +1,72 @@
+<!--<img class="bg-img" src="/assets/img/Admin/Fingerprint.png" alt="">-->
+
+<div class="container register-body">
+
+  <div class="container row">
+  <div class="col-sm-1 col-md-4 col-lg-2">
+
+  </div>
+
+  <div class="col-sm-10 col-md-4 col-lg-6">
+
+      <form class="example-form">
+        <mat-form-field class="hide example-full-width">
+          <input matInput placeholder="First name" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="First name" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Province" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input type="text" placeholder="District" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of options" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Election District" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Polling District" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="GS Division" value="">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <textarea matInput placeholder="Leave a comment"></textarea>
+        </mat-form-field>
+
+        <div class="example-button-row" style="margin-left: 50%">
+          <button mat-raised-button>Save</button>
+        </div>
+
+
+
+      </form>
+
+  </div>
+
+  <div class="col-sm-1 col-md-4 col-lg-2">
+    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+         alt="Photo of a Shiba Inu" style="width: 120px; height: 120px; margin-top: 100px; margin-left: 50px">
+  </div>
+
+</div>
+
+</div>

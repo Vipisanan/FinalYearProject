@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+}
+.bg-vote{
+  position: absolute;
+  opacity: 0.1;
+}
+.party-logo{
+  width: 80px;
+  height: 80px;
+}
+
+::ng-deep .mat-checkbox .mat-checkbox-frame {
+  border-color: black;
+  width: 40px;
+  height: 40px;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+  background-color: black !important;
+  width: 40px;
+  height: 40px;
+}

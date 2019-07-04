@@ -17,6 +17,11 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule, MatCardModule, MatCheckboxModule, MatFormFieldModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
+import { PartyRegisterComponent } from './admin/nav-bar/party-register/party-register.component';
+import { CandidateRegisterComponent } from './admin/nav-bar/candidate-register/candidate-register.component';
+import { AddElectionComponent } from './admin/nav-bar/add-election/add-election.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 
 @NgModule({
@@ -28,7 +33,10 @@ import {MatMenuModule} from '@angular/material/menu';
     ResultComponent,
     NavBarComponent,
     LoginComponent,
-    VoterRegisterComponent
+    VoterRegisterComponent,
+    PartyRegisterComponent,
+    CandidateRegisterComponent,
+    AddElectionComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +51,9 @@ import {MatMenuModule} from '@angular/material/menu';
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTableModule,
+    MatToolbarModule
   ],
   // exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

@@ -6,6 +6,9 @@ import {AdminComponent} from './admin/admin.component';
 import {ResultComponent} from './result/result.component';
 import {LoginComponent} from './admin/nav-bar/login/login.component';
 import {VoterRegisterComponent} from './admin/nav-bar/voter-register/voter-register.component';
+import {PartyRegisterComponent} from './admin/nav-bar/party-register/party-register.component';
+import {CandidateRegisterComponent} from './admin/nav-bar/candidate-register/candidate-register.component';
+import {AddElectionComponent} from './admin/nav-bar/add-election/add-election.component';
 
 const routes: Routes = [
   {
@@ -21,20 +24,32 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    children : [
+    children: [
       {
-        path : 'voter-register',
-        component : VoterRegisterComponent
+        path: 'voter-register',
+        component: VoterRegisterComponent
+      },
+      {
+        path: 'party-register',
+        component: PartyRegisterComponent
+      },
+      {
+        path: 'candidate-register',
+        component: CandidateRegisterComponent
+      },
+      {
+        path: 'add-election',
+        component : AddElectionComponent
+      },
+      {
+        path: 'result',
+        component: ResultComponent
       }
     ]
   },
   {
-    path : 'login',
-    component : LoginComponent
-  },
-  {
-    path: 'path',
-    component: ResultComponent
+    path: 'login',
+    component: LoginComponent
   }
 ];
 

@@ -1,0 +1,25 @@
+.re-party-body{
+  background-size: cover;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+.example-card-party {
+  max-width: 200px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.example-full-width-party {
+  width: 100%;
+  height: 80px;
+}
