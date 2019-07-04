@@ -11,7 +11,7 @@ import {NavBarComponent} from './admin/nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatTabsModule} from '@angular/material/tabs';
 import {LoginComponent} from './admin/nav-bar/login/login.component';
-import {VoterRegisterComponent} from './admin/nav-bar/voter-register/voter-register.component';
+import {DialogDataExampleDialog, VoterRegisterComponent} from './admin/nav-bar/voter-register/voter-register.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -22,6 +22,9 @@ import { CandidateRegisterComponent } from './admin/nav-bar/candidate-register/c
 import { AddElectionComponent } from './admin/nav-bar/add-election/add-election.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {HttpClientModule} from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
@@ -36,7 +39,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     VoterRegisterComponent,
     PartyRegisterComponent,
     CandidateRegisterComponent,
-    AddElectionComponent
+    AddElectionComponent,
+    DialogDataExampleDialog
   ],
   imports: [
     BrowserModule,
@@ -47,13 +51,19 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatTabsModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatCardModule,
     MatMenuModule,
     MatTableModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatDialogModule,
+    HttpClientModule
+  ],
+  entryComponents: [
+    DialogDataExampleDialog
   ],
   // exports: [MatButtonModule, MatCheckboxModule],
   providers: [],

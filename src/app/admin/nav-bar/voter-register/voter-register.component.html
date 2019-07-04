@@ -1,59 +1,60 @@
 <!--<img class="bg-img" src="/assets/img/Admin/Fingerprint.png" alt="">-->
-
+<br>
+<br>
+<br>
+<br>
 <div class="container register-body">
 
   <div class="container row">
-  <div class="col-sm-1 col-md-4 col-lg-2">
+  <div class=" col-md-2 col-lg-2">
 
   </div>
 
-  <div class="col-sm-10 col-md-4 col-lg-6">
+  <div class="col-sm-12 col-md-8 col-lg-8">
 
-      <form class="example-form">
-        <mat-form-field class="hide example-full-width">
-          <input matInput placeholder="First name" value="">
-        </mat-form-field>
+      <form class="example-form" [formGroup]="voterForm" (ngSubmit)="onSubmit() ">
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="First name" value="">
-        </mat-form-field>
+        <div class="row">
+          <div class="col-sm-12 col-md-7 col-lg-7">
+            <mat-form-field class="hide example-full-width">
+              <mat-label>First Name</mat-label>
+              <input matInput placeholder="First name" formControlName="fname" value="">
+            </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Last Name" value="">
-        </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <mat-label>Last Name</mat-label>
+              <input matInput placeholder="Last name" formControlName="lname" value="">
+            </mat-form-field>
+          </div>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Province" value="">
-        </mat-form-field>
+          <div class="col-sm-12 col-md-5 col-lg-5">
+            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                 alt="Photo of a Shiba Inu" style="width: 120px; height: 120px; margin-top: 10px; margin-left: 50px">
 
-        <mat-form-field class="example-full-width">
-          <input type="text" placeholder="District" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+          </div>
+        </div>
 
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Election District" value="">
-        </mat-form-field>
+
+
 
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Polling District" value="">
+          <mat-label>Gs Division</mat-label>
+          <mat-select  formControlName="state" >
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let state of gsDivisionDatas" [value]="state.id">{{state.name}}</mat-option>
+          </mat-select>
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="GS Division" value="">
-        </mat-form-field>
+
 
         <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Leave a comment"></textarea>
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Leave a comment" formControlName="message"></textarea>
         </mat-form-field>
 
         <div class="example-button-row" style="margin-left: 50%">
-          <button mat-raised-button>Save</button>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!voterForm.valid">Save</button>
         </div>
 
 
@@ -62,11 +63,12 @@
 
   </div>
 
-  <div class="col-sm-1 col-md-4 col-lg-2">
-    <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-         alt="Photo of a Shiba Inu" style="width: 120px; height: 120px; margin-top: 100px; margin-left: 50px">
-  </div>
+  <div class="col-md-2 col-lg-2">
+    </div>
 
 </div>
 
 </div>
+
+
+<!--******************************************************-->
