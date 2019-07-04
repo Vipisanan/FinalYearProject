@@ -35,7 +35,10 @@
         </div>
 
 
-
+        <mat-form-field class="example-full-width">
+          <input type="number"  #postalCode matInput number  maxlength="12"  placeholder="NIC number"  formControlName="icNo" value="">
+          <mat-hint align="end">{{postalCode.value.length}} / 12</mat-hint>
+        </mat-form-field>
 
 
         <mat-form-field class="example-full-width">

@@ -39,6 +39,8 @@ export class VoterRegisterComponent implements OnInit {
       fname: new FormControl('', Validators.required),
       lname: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
+      icNo: new FormControl('', [Validators.required ,
+                                                          Validators.min(12)]),
       message: new FormControl('', Validators.required)
     });
     this.getAllGSDivision();
@@ -71,6 +73,7 @@ export class VoterRegisterComponent implements OnInit {
     if (this.voterForm.invalid) {
       return;
     }
+
     console.log('onSubmit method call');
     this.openDialog();
     console.log(this.voterForm.value);
