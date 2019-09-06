@@ -25,6 +25,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
+import { VoterListComponent } from './admin/nav-bar/voter-list/voter-list.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     PartyRegisterComponent,
     CandidateRegisterComponent,
     AddElectionComponent,
-    DialogDataExampleDialog
+    DialogDataExampleDialog,
+    VoterListComponent
   ],
   imports: [
     BrowserModule,
