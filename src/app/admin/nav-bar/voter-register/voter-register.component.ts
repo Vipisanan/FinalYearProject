@@ -4,6 +4,7 @@ import {VoterRegisterService} from './voter-register.service';
 import {GsDivisionModel} from '../../models/GsDivisionModel';
 import {MatDialog} from '@angular/material';
 import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {VoterRegisterModel} from "../../models/VoterRegisterModel";
 
 export interface DialogData {
   animal: 'panda' | 'unicorn' | 'lion';
@@ -17,6 +18,7 @@ export interface DialogData {
 
 export class VoterRegisterComponent implements OnInit {
   gsDivisionDatas: GsDivisionModel[];
+  voterRegisterModel:VoterRegisterModel[];
   voterForm: FormGroup;
   isSubitted = false;
 
@@ -36,12 +38,12 @@ export class VoterRegisterComponent implements OnInit {
   ngOnInit() {
     this.openDialog();
     this.voterForm = this.formbuilder.group({
-      fname: new FormControl('', Validators.required),
-      lname: new FormControl('', Validators.required),
-      state: new FormControl('', Validators.required),
-      icNo: new FormControl('', [Validators.required ,
+      firstName: new FormControl('', Validators.required),
+      lastName: new FormControl('', Validators.required),
+      gsDivisionId: new FormControl('', Validators.required),
+      nicNo: new FormControl('', [Validators.required ,
                                                           Validators.min(12)]),
-      message: new FormControl('', Validators.required)
+      specificDetails: new FormControl('', Validators.required)
     });
     this.getAllGSDivision();
   }
@@ -65,7 +67,7 @@ export class VoterRegisterComponent implements OnInit {
     });
   }
 
-
+  //for register voter
   onSubmit() {
     this.isSubitted = true;
 
@@ -77,6 +79,26 @@ export class VoterRegisterComponent implements OnInit {
     console.log('onSubmit method call');
     this.openDialog();
     console.log(this.voterForm.value);
+    this.voterRegisterModel = this.voterForm.value;
+    // @ts-ignore
+    this.voterRegisterModel.userType = 1;
+
+    console.log(this.voterRegisterModel);
+    this.voterRegister();
+
+  }
+
+  voterRegister(){
+    this.service.voterRegister(this.voterRegisterModel)
+      .subscribe(
+        reData => {
+          console.log(reData);
+          if (reData.statusDescription == "Success") {
+            alert(reData.statusDescription + "Success")
+          }else {
+            alert(reData.statusDescription + "try again");
+          }
+        });
 
   }
 }

@@ -3,12 +3,14 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {catchError, map, tap} from 'rxjs/operators';
+import {VoterRegisterModel} from "../../models/VoterRegisterModel";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VoterRegisterService {
 getUrl = environment.apiBaseUrl + '/gs-division';
+  voterRegisterURL = environment.apiBaseUrl + '/user/voter-register';
   constructor(private httpClient: HttpClient) { }
 
   getAllGSDivision(): Observable<any> {
@@ -19,6 +21,17 @@ getUrl = environment.apiBaseUrl + '/gs-division';
         catchError(this.handleError('can not delete data.'))
       );
   }
+
+  voterRegister(voterRegisterModel: VoterRegisterModel[]) :Observable<any> {
+    return this.httpClient.post(this.voterRegisterURL , voterRegisterModel)
+      .pipe(
+        tap(),
+        tap(data => console.log('fetched register data')),
+        map(data => data),
+        catchError(this.handleError('register data', [])),
+      );
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -33,6 +46,4 @@ getUrl = environment.apiBaseUrl + '/gs-division';
       return of(result as T);
     };
   }
-
-
 }

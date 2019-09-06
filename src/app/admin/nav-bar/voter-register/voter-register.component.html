@@ -18,12 +18,12 @@
           <div class="col-sm-12 col-md-7 col-lg-7">
             <mat-form-field class="hide example-full-width">
               <mat-label>First Name</mat-label>
-              <input matInput placeholder="First name" formControlName="fname" value="">
+              <input matInput placeholder="First name" formControlName="firstName" value="">
             </mat-form-field>
 
             <mat-form-field class="example-full-width">
               <mat-label>Last Name</mat-label>
-              <input matInput placeholder="Last name" formControlName="lname" value="">
+              <input matInput placeholder="Last name" formControlName="lastName" value="">
             </mat-form-field>
           </div>
 
@@ -36,14 +36,15 @@
 
 
         <mat-form-field class="example-full-width">
-          <input type="number"  #postalCode matInput number  maxlength="12"  placeholder="NIC number"  formControlName="icNo" value="">
+          <input type="number"  #postalCode matInput number  maxlength="12"  placeholder="NIC number"
+                 formControlName="nicNo" value="">
           <mat-hint align="end">{{postalCode.value.length}} / 12</mat-hint>
         </mat-form-field>
 
 
         <mat-form-field class="example-full-width">
           <mat-label>Gs Division</mat-label>
-          <mat-select  formControlName="state" >
+          <mat-select  formControlName="gsDivisionId" >
             <mat-option>None</mat-option>
             <mat-option *ngFor="let state of gsDivisionDatas" [value]="state.id">{{state.name}}</mat-option>
           </mat-select>
@@ -53,8 +54,10 @@
 
         <mat-form-field class="example-full-width">
           <mat-label>Leave a comment</mat-label>
-          <textarea matInput placeholder="Leave a comment" formControlName="message"></textarea>
+          <textarea matInput placeholder="Leave a comment" formControlName="specificDetails"></textarea>
         </mat-form-field>
+<!--        user type should be a voter so it will take value of 1-->
+
 
         <div class="example-button-row" style="margin-left: 50%">
           <button mat-raised-button color="primary" type="submit" [disabled]="!voterForm.valid">Save</button>
