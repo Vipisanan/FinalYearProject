@@ -35,16 +35,16 @@
             <th><input type="text" class="form-control" placeholder="Last Name" disabled></th>
             <th><input type="text" class="form-control" placeholder="NIC Number" disabled></th>
             <th><input type="text" class="form-control" placeholder="GSDivision" disabled></th>
-            <th><input type="text" class="form-control" placeholder="isVoter?" disabled></th>
+<!--            <th><input type="text" class="form-control" placeholder="isVoter?" disabled></th>-->
           </tr>
           </thead>
-          <tbody>
+          <tbody >
           <tr *ngFor="let singleVoter of voterList">
             <td>{{singleVoter.firstName}}</td>
             <td>{{singleVoter.lastName}}</td>
             <td>{{singleVoter.nicNo}}</td>
             <td>{{singleVoter.gsDivisionName}}</td>
-            <td>yes or no</td>
+<!--            <td>yes or no</td>-->
           </tr>
 
           </tbody>
