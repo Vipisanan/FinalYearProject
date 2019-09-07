@@ -18,7 +18,7 @@ getUrl = environment.apiBaseUrl + '/gs-division';
       .pipe(
         tap(x => console.log('fetch gsdivision data')),
         map(value => value['content']),
-        catchError(this.handleError('can not delete data.'))
+        catchError(this.handleError('can not get data.'))
       );
   }
 

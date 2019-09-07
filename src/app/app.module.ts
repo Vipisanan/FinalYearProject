@@ -28,6 +28,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { VoterListComponent } from './admin/nav-bar/voter-list/voter-list.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
