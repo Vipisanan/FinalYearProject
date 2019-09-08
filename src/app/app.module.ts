@@ -26,6 +26,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { VoterListComponent } from './admin/nav-bar/voter-list/voter-list.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 
@@ -63,7 +64,8 @@ import { VoterListComponent } from './admin/nav-bar/voter-list/voter-list.compon
     MatTableModule,
     MatToolbarModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSlideToggleModule
   ],
   entryComponents: [
     DialogDataExampleDialog
