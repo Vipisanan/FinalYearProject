@@ -1,5 +1,6 @@
 export class VoterList {
   constructor(
+  public id:number,
   public firstName:string,
   public lastName:string,
   public nicNo:number,

@@ -10,6 +10,8 @@ import {catchError, map, tap} from "rxjs/operators";
 export class VoterListService {
 
   getUrl = environment.apiBaseUrl + '/user/all-users';
+  getUser = environment.apiBaseUrl + '/user/';
+  addVoter = environment.apiBaseUrl + '/voter/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -23,6 +25,24 @@ export class VoterListService {
 
   }
 
+  getUserById(id:number): Observable<any> {
+    return this.httpClient.get<any> (this.getUser+id)
+      .pipe(
+        tap(x => console.log('fetch voter list data')),
+        map(value => value['content']),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
+
+  giveVoterPermission(id: number) :Observable<any>  {
+    return this.httpClient.get<any> (this.addVoter+id)
+      .pipe(
+        tap(x => console.log('fetch data')),
+        // map(value => value['content']),
+        catchError(this.handleError('can not give permission.'))
+      );
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
