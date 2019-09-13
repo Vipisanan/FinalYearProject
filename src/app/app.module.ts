@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialogModule} from '@angular/material/dialog';
 import { VoterListComponent } from './admin/nav-bar/voter-list/voter-list.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { UserListComponent } from './admin/nav-bar/user-list/user-list.component';
 
 
 
@@ -44,7 +45,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CandidateRegisterComponent,
     AddElectionComponent,
     DialogDataExampleDialog,
-    VoterListComponent
+    VoterListComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

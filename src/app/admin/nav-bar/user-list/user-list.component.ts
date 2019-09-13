@@ -1,20 +1,13 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {VoterListService} from "./voter-list.service";
+import { Component, OnInit } from '@angular/core';
 import {VoterList} from "../../models/VoterList";
-import {MatSlideToggleChange} from "@angular/material/slide-toggle";
-import {assertNumber} from "@angular/core/src/render3/assert";
-
-/**
- * @title Basic use of `<table mat-table>`
- */
+import {VoterListService} from "../voter-list/voter-list.service";
 
 @Component({
-  selector: 'app-voter-list',
-  templateUrl: './voter-list.component.html',
-  styleUrls: ['./voter-list.component.css']
+  selector: 'app-user-list',
+  templateUrl: './user-list.component.html',
+  styleUrls: ['./user-list.component.css']
 })
-
-export class VoterListComponent implements OnInit {
+export class UserListComponent implements OnInit {
 
   voterList: VoterList[];
   user: any;
@@ -68,4 +61,5 @@ export class VoterListComponent implements OnInit {
           }
         });
   }
+
 }

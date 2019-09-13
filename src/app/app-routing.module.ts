@@ -10,6 +10,7 @@ import {PartyRegisterComponent} from './admin/nav-bar/party-register/party-regis
 import {CandidateRegisterComponent} from './admin/nav-bar/candidate-register/candidate-register.component';
 import {AddElectionComponent} from './admin/nav-bar/add-election/add-election.component';
 import {VoterListComponent} from "./admin/nav-bar/voter-list/voter-list.component";
+import {UserListComponent} from "./admin/nav-bar/user-list/user-list.component";
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
       {
         path: 'voter-list',
         component: VoterListComponent
+      },
+      {
+        path: 'user-list',
+        component: UserListComponent
       }
     ]
   },
