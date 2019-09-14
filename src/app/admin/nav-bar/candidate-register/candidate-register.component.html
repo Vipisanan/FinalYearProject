@@ -3,7 +3,7 @@
     <div class="col-sm-1 col-md-4 col-lg-2"></div>
     <div class="col-sm-10 col-md-4 col-lg-8">
 
-      <form class="example-form">
+      <form class="example-form" [formGroup]="candidateForm" (ngSubmit)="onSubmit()">
         <mat-form-field class="example-full-width">
           <input matInput placeholder="Candidate party" value="">
         </mat-form-field>
@@ -12,14 +12,14 @@
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Candidate name">
+                <input matInput placeholder="Candidate name" formControlName="name">
               </mat-form-field>
             </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input matInput placeholder="Candidate no">
-              </mat-form-field>
-            </td>
+<!--            <td>-->
+<!--              <mat-form-field class="example-full-width">-->
+<!--                <input matInput placeholder="Candidate no">-->
+<!--              </mat-form-field>-->
+<!--            </td>-->
           </tr>
         </table>
 
@@ -39,17 +39,24 @@
           <tr>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="Voter ID">
+                <input matInput placeholder="Voter ID" formControlName="voterId">
+              </mat-form-field>
+            </td>
+            <td>
+<!--              <mat-form-field class="example-full-width">-->
+<!--                <input matInput placeholder="Party Name">-->
+<!--              </mat-form-field>-->
+              <mat-form-field class="example-full-width">
+                <mat-label>Party Name</mat-label>
+                <mat-select  formControlName="partyModelId" >
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let party of partyModel" [value]="party.id">{{party.name}}</mat-option>
+                </mat-select>
               </mat-form-field>
             </td>
             <td>
               <mat-form-field class="example-full-width">
-                <input matInput placeholder="State">
-              </mat-form-field>
-            </td>
-            <td>
-              <mat-form-field class="example-full-width">
-                <input #postalCode matInput maxlength="10" placeholder="Phone number" value="">
+                <input #postalCode matInput maxlength="10" placeholder="Phone number" value="" formControlName="pno">
                 <mat-hint align="end">{{postalCode.value.length}} / 10</mat-hint>
               </mat-form-field>
             </td>
@@ -82,7 +89,7 @@
 
 
         <div class="example-button-row" style="margin-left: 50%">
-          <button mat-raised-button>Submit</button>
+          <button mat-raised-button [disabled]="!candidateForm.valid">Submit</button>
         </div>
 
       </form>

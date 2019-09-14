@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CandidateRegisterService} from "./candidate-register.service";
 
 @Component({
   selector: 'app-candidate-register',
@@ -10,10 +11,35 @@ export class CandidateRegisterComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['President Election', 'Lok sabha election', 'Parliament Election'];
+  partyModel:any;
+  candidateForm: FormGroup ;
 
-  constructor() { }
+  constructor(private service:CandidateRegisterService,
+              private formbuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.getPartyName();
+
+    this.candidateForm = this.formbuilder.group({
+      name: new FormControl('', Validators.required),
+      partyModelId: new FormControl('', Validators.required),
+      voterId: new FormControl('', Validators.required),
+      pno: new FormControl('', Validators.required),
+      logoUrl: new FormControl('default')
+    });
   }
 
+  getPartyName(){
+    this.service.getPartyName()
+      .subscribe(
+        value => {
+          this.partyModel = value;
+          console.log(value);
+        },
+      );
+  }
+
+  onSubmit() {
+    console.log(this.candidateForm.value);
+  }
 }
