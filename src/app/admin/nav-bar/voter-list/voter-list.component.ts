@@ -36,36 +36,5 @@ export class VoterListComponent implements OnInit {
           this.voterList = reData;
         });
   }
-  getUserId(id: number) {
-    this.userId =id;
-    this.getUserById();
-  }
 
-
-  getUserById(){
-    this.service.getUserById(this.userId)
-      .subscribe(
-        reData => {
-          console.log(reData);
-          this.user = reData;
-          this.isUser=true;
-        });
-  }
-
-
-
-  giveVoterPermission(id:number) {
-    console.log(id);
-    this.service.giveVoterPermission(id)
-      .subscribe(
-        reData => {
-          console.log(reData);
-          if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully permission denied")
-          }else {
-            // alert(reData.statusDescription + "try again");
-            alert("He/She is already voter")
-          }
-        });
-  }
 }

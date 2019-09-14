@@ -1,0 +1,7 @@
+
+export class PartyColorModel {
+  constructor(
+    public id:number,
+    public colour:string
+  ){}
+}

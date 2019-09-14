@@ -9,25 +9,31 @@
 
     <div class="col-sm-10 col-md-4 col-lg-6">
 
-      <form class="example-form">
-        <mat-form-field class="hide example-full-width">
-          <input matInput placeholder="not for it" value="">
-          <input matInput placeholder="not for it" value="">
-        </mat-form-field>
+      <form class="example-form"  [formGroup]="partyForm" (ngSubmit)="onSubmit()">
+
+        <br>
+        <br>
+        <br>
+        <br>
 
         <div class="row">
           <div class="col-6">
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Party name" value="">
+              <input matInput placeholder="Party name" value="" formControlName="name">
             </mat-form-field>
 
-            <mat-form-field class="example-full-width">
-              <input matInput placeholder="Party color" value="">
-            </mat-form-field>
 
             <mat-form-field class="example-full-width">
-              <input matInput placeholder="Party id" value="">
+              <mat-label>PartyColor</mat-label>
+              <mat-select  formControlName="partyColourId" >
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let color of partyColorModel" [value]="color.id">{{color.colour}}</mat-option>
+              </mat-select>
             </mat-form-field>
+
+<!--            <mat-form-field class="example-full-width">-->
+<!--              <input matInput placeholder="Party id" value="" formControlName="">-->
+<!--            </mat-form-field>-->
 
 
           </div>
@@ -41,7 +47,7 @@
                   <img alt="Photo of a Shiba Inu" mat-card-image
                        src="https://material.angular.io/assets/img/examples/shiba2.jpg">
                   <mat-card-actions>
-                    <input mat-button type="file" placeholder="Add image" value=""/>
+                    <input mat-button type="file" placeholder="Add image" value="" />
                   </mat-card-actions>
                 </mat-card>
               </td>
@@ -65,13 +71,16 @@
         <!--</mat-autocomplete>-->
         <!--</mat-form-field>-->
 
+        <br>
+        <br>
+        <br>
 
-        <mat-form-field class="example-full-width-party">
-          <textarea matInput placeholder="Leave a comment"></textarea>
-        </mat-form-field>
+<!--        <mat-form-field class="example-full-width-party">-->
+<!--          <textarea matInput placeholder="Leave a comment" formControlName="cmt"></textarea>-->
+<!--        </mat-form-field>-->
 
         <div class="example-button-row" style="margin-left: 50%">
-          <button mat-raised-button>Save</button>
+          <button mat-raised-button type="submit" [disabled]="!partyForm.valid">Save</button>
         </div>
 
 

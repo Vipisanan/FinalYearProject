@@ -5,8 +5,7 @@ export class GsDivisionModel {
               public name: string,
               public gnDivisionNo: string,
               public pNo: string,
-              public districtModel: DistrictModel) {
-  }
+              public districtModel: DistrictModel) {  }
 
 
 }

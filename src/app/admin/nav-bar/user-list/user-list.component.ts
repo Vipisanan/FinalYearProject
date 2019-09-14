@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {VoterList} from "../../models/VoterList";
 import {VoterListService} from "../voter-list/voter-list.service";
+import {UserListService} from "./user-list.service";
 
 @Component({
   selector: 'app-user-list',
@@ -15,7 +16,7 @@ export class UserListComponent implements OnInit {
   userId:number;
   isAdded: boolean;
 
-  constructor(private service:VoterListService) { }
+  constructor(private service:UserListService) { }
 
   ngOnInit() {
     this.getVoterList();

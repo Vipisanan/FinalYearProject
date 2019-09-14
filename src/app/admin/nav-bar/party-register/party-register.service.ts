@@ -1,26 +1,37 @@
 import { Injectable } from '@angular/core';
-import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable, of} from "rxjs";
+import {environment} from "../../../../environments/environment";
 import {catchError, map, tap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class VoterListService {
+export class PartyRegisterService {
 
-  getUrl = environment.apiBaseUrl + '/voter';
+  getColorURL = environment.apiBaseUrl + '/party/color';
+  addPartyURL = environment.apiBaseUrl + '/party';
 
   constructor(private httpClient: HttpClient) { }
 
-  getVoterList(): Observable<any> {
-    return this.httpClient.get(this.getUrl)
+  getPartyColor() :Observable<any>{
+    return this.httpClient.get(this.getColorURL)
       .pipe(
-        tap(x => console.log('fetch voter list data')),
+        tap(x => console.log('fetch party color data')),
         map(value => value['content']),
         catchError(this.handleError('can not get data.'))
       );
 
+  }
+
+  saveParty(value: any):Observable<any>{
+    console.log(value);
+return this.httpClient.post<any>(this.addPartyURL , value)
+  .pipe(
+    tap(x => console.log('fetch party color data')),
+    map(data=>data),
+    catchError(this.handleError('can not get data.'))
+  );
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
