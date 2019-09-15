@@ -1,18 +1,24 @@
 <nav class="fixed-top navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" routerLink="admin" >
+  <a class="navbar-brand" routerLink="admin">
     <img src="/assets/img/s-lanka-logo.png" width="45" height="45" alt="">
   </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+          aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
 
       <li class="nav-item active">
-        <a mat-button [matMenuTriggerFor]="animals" class="nav-link" >Admin <span class="sr-only">(current)</span></a>
+        <a mat-button [matMenuTriggerFor]="registers" class="nav-link">Registers
+          <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a mat-button [matMenuTriggerFor]="admin" class="nav-link">Admin
+          <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a mat-button class="nav-link" routerLink="result" >Election result</a>
+        <a mat-button class="nav-link" routerLink="result">Election result</a>
       </li>
       <li class="nav-item">
         <a mat-button class="nav-link" routerLink="user-list">User list</a>
@@ -31,18 +37,26 @@
 
 <!--<button mat-button [matMenuTriggerFor]="animals">Animal index</button>-->
 
-<mat-menu #animals="matMenu">
+<mat-menu #registers="matMenu">
   <button mat-menu-item routerLink="voter-register">Register user(Voter)</button>
   <button mat-menu-item routerLink="party-register">Register party</button>
   <button mat-menu-item routerLink="candidate-register">Register candidate</button>
-<!--  <button mat-menu-item routerLink="add-election">Add Election</button>-->
-  <button mat-menu-item [matMenuTriggerFor]="vertebrates">Add Election</button>
+  <button mat-menu-item [matMenuTriggerFor]="electionType">Add Election</button>
 </mat-menu>
 
-<mat-menu #vertebrates="matMenu">
-  <button mat-menu-item routerLink="add-election" >President</button>
-  <button mat-menu-item >Lok sabha election</button>
-  <button mat-menu-item >Parliament Election</button>
+<mat-menu #admin="matMenu">
+  <button mat-menu-item routerLink="">Add Election</button>
+  <button mat-menu-item routerLink="user-list">Add voter</button>
+  <button mat-menu-item routerLink="">Add party</button>
+  <button mat-menu-item routerLink="">Add candidate</button>
 </mat-menu>
+
+<mat-menu #electionType="matMenu">
+  <button mat-menu-item routerLink="add-election">President</button>
+  <button mat-menu-item>Lok sabha election</button>
+  <button mat-menu-item>Parliament Election</button>
+</mat-menu>
+
+
 
 
