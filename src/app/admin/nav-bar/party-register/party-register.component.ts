@@ -48,7 +48,7 @@ export class PartyRegisterComponent implements OnInit {
           if (value.statusDescription =="Success"){
             alert(value.statusDescription)
           }else {
-            alert(value.statusDescription)
+            alert(value.statusDescription + " | Already this color was selected!")
           }
           console.log(value);
 

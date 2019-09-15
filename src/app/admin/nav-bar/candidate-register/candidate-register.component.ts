@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CandidateRegisterService} from "./candidate-register.service";
 
@@ -11,11 +11,12 @@ export class CandidateRegisterComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['President Election', 'Lok sabha election', 'Parliament Election'];
-  partyModel:any;
-  candidateForm: FormGroup ;
+  partyModel: any;
+  candidateForm: FormGroup;
 
-  constructor(private service:CandidateRegisterService,
-              private formbuilder: FormBuilder) { }
+  constructor(private service: CandidateRegisterService,
+              private formbuilder: FormBuilder) {
+  }
 
   ngOnInit() {
     this.getPartyName();
@@ -24,22 +25,33 @@ export class CandidateRegisterComponent implements OnInit {
       name: new FormControl('', Validators.required),
       partyModelId: new FormControl('', Validators.required),
       voterId: new FormControl('', Validators.required),
-      pno: new FormControl('', Validators.required),
-      logoUrl: new FormControl('default')
+      pno: new FormControl('', Validators.required)
+      // logoUrl: new FormControl('default')
     });
   }
 
-  getPartyName(){
+  getPartyName() {
     this.service.getPartyName()
       .subscribe(
         value => {
           this.partyModel = value;
-          console.log(value);
+          console.log(this.partyModel);
         },
       );
   }
 
   onSubmit() {
     console.log(this.candidateForm.value);
+    this.service.addCandidate(this.candidateForm.value)
+      .subscribe(
+        value => {
+          if (value.statusDescription = "Success") {
+            alert(value.statusDescription)
+          } else {
+            alert(value.statusDescription + "try again")
+          }
+          console.log(value);
+        },
+      );
   }
 }

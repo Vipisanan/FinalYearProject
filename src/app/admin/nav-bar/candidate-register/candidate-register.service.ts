@@ -10,6 +10,7 @@ import {catchError, map, tap} from "rxjs/operators";
 export class CandidateRegisterService {
 
   getPartyURL = environment.apiBaseUrl + '/party';
+  addCandidateURL = environment.apiBaseUrl + '/candidate';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -22,6 +23,17 @@ export class CandidateRegisterService {
       );
   }
 
+
+
+  addCandidate(value: any): Observable<any> {
+    console.log(value);
+    return this.httpClient.post<any>(this.addCandidateURL, value)
+      .pipe(
+        tap(x => console.log('fetch party color data')),
+        map(data => data),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
