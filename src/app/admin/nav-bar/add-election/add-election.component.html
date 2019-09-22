@@ -1,0 +1,220 @@
+<br>
+<br><br>
+<div class="container row">
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10">
+
+    <div class="row content">
+      <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+          <h3 class="panel-title">Election List</h3>
+          <div class="pull-right">
+            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter
+            </button>
+          </div>
+        </div>
+        <table class="table container">
+          <thead>
+          <tr class="filters hide">
+            <th><input type="text" class="form-control" placeholder="ELECTION ID" disabled></th>
+            <th><input type="text" class="form-control" placeholder="ELECTION TYPE" disabled></th>
+            <th><input type="text" class="form-control" placeholder="toActive?" disabled></th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let election of electionList">
+            <td>{{election.id}}</td>
+            <td>{{election.type}}</td>
+            <button mat-button
+                    class="t-btn t-btn-ex-small event-btn-2"
+                    data-toggle="modal"
+                    (click)="getElection(election)"
+                    data-target="#myModal2">To Active
+            </button>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+</div>
+<hr>
+
+<!--registered election-->
+
+<div class="container row">
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10">
+
+    <div class="row content">
+      <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+          <h4 class="panel-title">Registered Election</h4>
+          <div class="pull-right">
+
+          </div>
+        </div>
+        <table class="table container">
+          <thead>
+          <tr class="filters hide">
+            <th>ELECTION ID</th>
+            <th>ELECTION TYPE</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let election of registeredElection">
+            <td>{{election.electionTypeModel.id}}</td>
+            <td>{{election.electionTypeModel.type}}</td>
+            <button mat-button
+                    class="btn-danger t-btn-ex-small event-btn-2 "
+                    data-toggle="modal"
+                    data-target="#myDeleteModal">delete
+            </button>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+</div>
+
+<!--  to active election
+ if it is registered we want to tell
+ user details-->
+<div class="modal fade"
+     [ngClass]="election?'show':''"
+     [style]="{'display':election?'block':'none'}"
+     id="myModal2"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModal2Label"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModal2Label">Election Full details</h4>
+        <button type="button" class="close"
+                data-dismiss="modal"
+                aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [ngClass]="election?'show':''"
+              [style]="{'display':election?'block':'none'}">
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+
+                  <div class="card-body" *ngIf="registeredElection.length<1">
+                    <div class="card-title mb-4">
+                      <div class="d-flex justify-content-start">
+                        <div class="userData ml-3">
+                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{this.election.type}}</h2>
+                        </div>
+                        <div class="userData ml-3"
+                        *ngIf="registeredElection.length>0">
+                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
+                            href="javascript:void(0);">already one election have registered</a></h2>
+                        </div>
+
+                        <div class="ml-auto">
+                          <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes"/>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12" >
+                        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                          <li class="nav-item">
+                            <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo" role="tab"
+                               aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" id="connectedServices-tab" data-toggle="tab" href="#connectedServices"
+                               role="tab"
+                               aria-controls="connectedServices" aria-selected="false">Register Election</a>
+                          </li>
+                        </ul>
+                        <div class="tab-content ml-1" id="myTabContent">
+                          <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                               aria-labelledby="basicInfo-tab">
+
+
+                            <div class="row">
+                              <div class="col-sm-3 col-md-2 col-5">
+                                <label style="font-weight:bold;">Election Type</label>
+                              </div>
+                              <div class="col-md-8 col-6">
+                                {{this.election.type}}
+                              </div>
+                            </div>
+                            <hr/>
+
+                          </div>
+                          <div class="tab-pane fade" id="connectedServices" role="tabpanel"
+                               aria-labelledby="ConnectedServices-tab">
+                            <button (click)="registerElection(this.election.id)">Confirm</button>
+                            <br>
+                            <br class="modal-header">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!--detete model-->
+<div class="modal fade" id="myDeleteModal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="myModal2Label"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >Delete</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          Are you sure want to Delete this?
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button (click)="dropElection(registeredElection[0].electionTypeModel.id)" type="button"
+                    data-dismiss="modal"
+                    class="btn btn-add">Yes
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

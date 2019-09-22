@@ -11,6 +11,8 @@ import {CandidateRegisterComponent} from './admin/nav-bar/candidate-register/can
 import {AddElectionComponent} from './admin/nav-bar/add-election/add-election.component';
 import {VoterListComponent} from "./admin/nav-bar/voter-list/voter-list.component";
 import {UserListComponent} from "./admin/nav-bar/user-list/user-list.component";
+import {PartyListComponent} from "./admin/nav-bar/party-list/party-list.component";
+import {CandidateListComponent} from "./admin/nav-bar/candidate-list/candidate-list.component";
 
 const routes: Routes = [
   {
@@ -36,8 +38,15 @@ const routes: Routes = [
         component: PartyRegisterComponent
       },
       {
+        path: 'party-nomination',
+        component: PartyListComponent
+      },
+      {
         path: 'candidate-register',
         component: CandidateRegisterComponent
+      },{
+        path: 'candidate-nomination',
+        component: CandidateListComponent
       },
       {
         path: 'add-election',

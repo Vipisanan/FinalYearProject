@@ -1,0 +1,77 @@
+<p>
+  party-list works!
+</p>
+<p>
+  party-list works!
+</p>
+
+<div class="container row">
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+  <div class="col-lg-10 col-md-10 col-sm-10">
+
+    <div class="row content">
+      <div class="panel panel-primary filterable">
+        <div class="panel-heading">
+          <h3 class="panel-title">Party List</h3>
+          <div class="pull-right">
+            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter
+            </button>
+          </div>
+        </div>
+        <table class="table container">
+          <thead>
+          <tr class="filters hide">
+            <th><input type="text" class="form-control" placeholder="Party ID" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Party Name" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Colour" disabled></th>
+            <th><input type="text" class="form-control" placeholder="isVoter?" disabled></th>
+          </tr>
+          </thead>
+          <tbody>
+
+          <tr *ngFor="let party of partyList">
+            <td>{{party.id}}</td>
+            <td>{{party.name}}</td>
+            <td>{{party.color.colour}}</td>
+            <!--            <td>yes or no</td>-->
+
+            <button mat-button
+                    class="t-btn t-btn-ex-small event-btn-2"
+                    data-toggle="modal"
+                    data-target="#myModal2">To Active
+            </button>
+
+          </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
+</div>
+
+<!--  show party details-->
+<div class="modal fade"
+     id="myModal2"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="myModal2Label"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModal2Label">User Full details</h4>
+        <button type="button" class="close"
+                data-dismiss="modal"
+                aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
