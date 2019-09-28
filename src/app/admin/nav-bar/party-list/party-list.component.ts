@@ -8,11 +8,17 @@ import {PartyListService} from "./party-list.service";
 })
 export class PartyListComponent implements OnInit {
   private partyList: any;
+  private partyId: any;
+  private electionId: any;
+  private party: any;
+  private activeElection: any;
+
 
   constructor(private service:PartyListService) { }
 
   ngOnInit() {
     this.getPartyList();
+    this.getAllActiveElection();
   }
 
   getPartyList(){
@@ -24,7 +30,37 @@ export class PartyListComponent implements OnInit {
         });
   }
 
-  partyNomination(){
-    // this.service.partyNomination()
+  getPartyId(party: any) {
+console.log(party);
+    this.party = party;
   }
+
+  partyNomination(id){
+    this.partyId = id;
+    console.log(id);
+    this.service.partyNomination(this.electionId ,id)
+      .subscribe(
+        reData => {
+          console.log(reData);
+          if (reData.statusDescription == "Success") {
+            alert(reData.statusDescription + " :) Successfully party nominated")
+          }else {
+            alert("this party already selected")
+          }
+        });
+  }
+  getElectioTypeId(id) {
+    this.electionId = id;
+    console.log(id , "id")
+  }
+  getAllActiveElection(){
+    this.service.getAllActiveElection()
+      .subscribe(
+        reData => {
+          console.log(reData);
+          this.activeElection = reData;
+        });
+  }
+
+
 }
