@@ -65,11 +65,24 @@ export class AddElectionComponent implements OnInit {
           if (reData.statusDescription == "Success") {
             alert(reData.statusDescription + "Successfully Activated")
           }else {
-            alert(reData.statusDescription + "try again");
+            alert(reData.statusDescription);
             // alert("")
           }
         });
 console.log(this.id);
+  }
+  deActiveElection(){
+
+    this.service.deActiveElection(this.id)
+      .subscribe(
+        reData => {
+          console.log(reData);
+          if (reData.statusDescription == "Success") {
+            alert(reData.statusDescription + "Successfully Deactivated")
+          }else {
+            alert(reData.statusDescription);
+          }
+        });
   }
 
   getElection(election: any) {

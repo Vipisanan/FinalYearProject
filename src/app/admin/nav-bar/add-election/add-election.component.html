@@ -77,13 +77,23 @@
             <td *ngIf="election.active" class="text-center">
               <span class="dot"></span>
             </td>
+            <td *ngIf="!election.active" class="text-center">
+              <span class="">{{election.active}}</span>
+            </td>
             <button mat-button
+                    *ngIf="election.active"
+                    (click)="getActiveId(election.id)"
+                    class="btn-secondary t-btn-ex-small event-btn-2 "
+                    data-toggle="modal"
+                    data-target="#myDeActiveModal">Deactive
+            </button>
+            <button mat-button
+                    *ngIf="!election.active"
                     (click)="getActiveId(election.id)"
                     class="btn-secondary t-btn-ex-small event-btn-2 "
                     data-toggle="modal"
                     data-target="#myDeleteModal">Activate
             </button>
-
           </tr>
 
           </tbody>
@@ -104,15 +114,8 @@
      role="dialog"
      aria-labelledby="myModal2Label"
      aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" *ngIf="election">
     <div class="modal-content">
-<!--      <div class="modal-header">-->
-<!--        <h4 class="modal-title" id="myModal2Label">Election Full details</h4>-->
-<!--        <button type="button" class="close"-->
-<!--                data-dismiss="modal"-->
-<!--                aria-label="Close"><span aria-hidden="true">×</span>-->
-<!--        </button>-->
-<!--      </div>-->
       <div class="modal-body">
         <form >
           <div class="container">
@@ -124,7 +127,8 @@
                     <div class="card-title mb-4">
                       <div class="d-flex justify-content-start">
                         <div class="userData ml-3">
-                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{this.election.type}}</h2>
+                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">
+                            {{election.type}}</h2>
                         </div>
 <!--                        <div class="userData ml-3"-->
 <!--                        *ngIf="registeredElection.length>0">-->
@@ -210,6 +214,36 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
             <button (click)="activeElection()" type="button"
+                    data-dismiss="modal"
+                    class="btn btn-add">Yes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--DeActive model-->
+<div class="modal fade"
+     id="myDeActiveModal"
+     tabindex="-1" role="dialog"
+     aria-labelledby="myModal2Label"
+     aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" >De Activate</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          Are you sure want to DeActive this?
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button (click)="deActiveElection()" type="button"
                     data-dismiss="modal"
                     class="btn btn-add">Yes
             </button>

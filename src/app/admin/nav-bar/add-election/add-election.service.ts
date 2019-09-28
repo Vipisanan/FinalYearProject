@@ -12,7 +12,8 @@ export class AddElectionService {
   getUrl = environment.apiBaseUrl + '/election/types';
   getRegisteredElectionUrl = environment.apiBaseUrl + '/election';
   registeredElectionUrl = environment.apiBaseUrl + '/election/add-election/';
-  deleteElectionURL = environment.apiBaseUrl + '/election/';
+  activeElectionURL = environment.apiBaseUrl + '/election/';
+  deActiveElectionURL=environment.apiBaseUrl + '/election/deactive/';
    // environment.apiBaseUrl + '/add-election/{id}';
 
 
@@ -44,13 +45,23 @@ export class AddElectionService {
       );
   }
   activeElection(id: any) :Observable<any>{
-    return this.httpClient.get(this.deleteElectionURL+id )
+    return this.httpClient.get(this.activeElectionURL+id )
       .pipe(
-        tap(data => console.log('fetched delete election data')),
+        tap(data => console.log('fetched active election data')),
         map(data => data),
         catchError(this.handleError('register data', [])),
       );
   }
+
+  deActiveElection(id: any) :Observable<any>{
+    return this.httpClient.get(this.deActiveElectionURL+id )
+      .pipe(
+        tap(data => console.log('fetched deActive election data')),
+        map(data => data),
+        catchError(this.handleError('register data', [])),
+      );
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
