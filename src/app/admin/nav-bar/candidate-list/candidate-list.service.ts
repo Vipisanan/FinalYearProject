@@ -10,6 +10,7 @@ import {environment} from "../../../../environments/environment";
 export class CandidateListService {
   private getAllCandidateURL=environment.apiBaseUrl + '/candidate';
   private partyNominationURL=environment.apiBaseUrl + '/candidate/nomination/';
+  private getAllNominatedCandidateURL=environment.apiBaseUrl + '/candidate/nominated-candidate';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -21,6 +22,23 @@ export class CandidateListService {
         catchError(this.handleError('can not get data.'))
       );
   }
+  getAllNominatedCandidate() {
+    return this.httpClient.get(this.getAllNominatedCandidateURL)
+      .pipe(
+        tap(x => console.log('fetch partyNomination list data')),
+        map(value => value['content']),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
+  partyNomination(cid: any, pid: any) :Observable<any> {
+    return this.httpClient.get(this.partyNominationURL+cid+'/'+pid)
+      .pipe(
+        tap(x => console.log('fetch partyNomination list data')),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -34,13 +52,4 @@ export class CandidateListService {
       return of(result as T);
     };
   }
-
-  partyNomination(cid: any, pid: any) :Observable<any> {
-    return this.httpClient.get(this.partyNominationURL+cid+'/'+pid)
-      .pipe(
-        tap(x => console.log('fetch partyNomination list data')),
-        catchError(this.handleError('can not get data.'))
-      );
-  }
-
 }

@@ -8,10 +8,12 @@ import {CandidateListService} from "./candidate-list.service";
 })
 export class CandidateListComponent implements OnInit {
   candidate:any;
+  nominatedCandidate:any;
   constructor(private service :CandidateListService) { }
 
   ngOnInit() {
     this.getAllCandidate();
+    this.getAllNominatedCandidate();
   }
 
   getAllCandidate(){
@@ -36,6 +38,14 @@ export class CandidateListComponent implements OnInit {
           }else {
             alert(reData.statusDescription);
           }
+        });
+  }
+  getAllNominatedCandidate(){
+    this.service.getAllNominatedCandidate()
+      .subscribe(
+        reData => {
+          console.log(reData);
+          this.nominatedCandidate=reData;
         });
   }
 }
