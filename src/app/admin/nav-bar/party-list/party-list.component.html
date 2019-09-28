@@ -111,7 +111,7 @@
      *ngIf="activeElection"
      aria-labelledby="myModal2Label"
      aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog"  *ngIf="party">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close"
@@ -138,8 +138,8 @@
                           </div>
                         </div>
                         <div class="userData ml-3">
-                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
-                            href="javascript:void(0);">{{party.name}}</a></h2>
+                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">
+                            <a *ngIf="party">{{party.name}}</a></h2>
                         </div>
                         <div class="ml-auto">
                           <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes"/>
