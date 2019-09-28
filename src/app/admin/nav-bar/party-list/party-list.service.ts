@@ -10,6 +10,7 @@ import {catchError, map, tap} from "rxjs/operators";
 export class PartyListService {
 
   getUrl = environment.apiBaseUrl + '/party';
+  getAllNominatedPartyUrl = environment.apiBaseUrl + '/party';
   partyNominationURL = environment.apiBaseUrl + '/party/nomination/';
   getAllActiveElectionURL = environment.apiBaseUrl + '/election/get-all-active-election/';
   // "nomination/{eId}/{pId}"
@@ -44,6 +45,16 @@ export class PartyListService {
   }
 
 
+
+  getAllNominatedParty() {
+    return this.httpClient.get(this.getAllNominatedPartyUrl)
+      .pipe(
+        tap(x => console.log('fetch getAllActiveElection list data')),
+        map(value => value['content']),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -57,6 +68,4 @@ export class PartyListService {
       return of(result as T);
     };
   }
-
-
 }

@@ -12,12 +12,14 @@ export class PartyListComponent implements OnInit {
   private electionId: any;
   private party: any;
   private activeElection: any;
+  private nominatedElection: any;
 
 
   constructor(private service:PartyListService) { }
 
   ngOnInit() {
     this.getPartyList();
+    this.getAllNominatedParty();
     this.getAllActiveElection();
   }
 
@@ -59,6 +61,15 @@ console.log(party);
         reData => {
           console.log(reData);
           this.activeElection = reData;
+        });
+  }
+
+  getAllNominatedParty(){
+    this.service.getAllNominatedParty()
+      .subscribe(
+        reData => {
+          console.log(reData);
+          this.nominatedElection = reData;
         });
   }
 
