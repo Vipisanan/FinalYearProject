@@ -12,6 +12,7 @@ export class AddElectionService {
   getUrl = environment.apiBaseUrl + '/election/types';
   getRegisteredElectionUrl = environment.apiBaseUrl + '/election';
   registeredElectionUrl = environment.apiBaseUrl + '/election/add-election/';
+  deleteElectionURL = environment.apiBaseUrl + '/election/';
    // environment.apiBaseUrl + '/add-election/{id}';
 
 
@@ -42,6 +43,15 @@ export class AddElectionService {
         catchError(this.handleError('register data', [])),
       );
   }
+  activeElection(id: any) :Observable<any>{
+    return this.httpClient.get(this.deleteElectionURL+id )
+      .pipe(
+        tap(data => console.log('fetched delete election data')),
+        map(data => data),
+        catchError(this.handleError('register data', [])),
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -55,5 +65,4 @@ export class AddElectionService {
       return of(result as T);
     };
   }
-
 }

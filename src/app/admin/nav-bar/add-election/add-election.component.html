@@ -9,16 +9,17 @@
         <div class="panel-heading">
           <h3 class="panel-title">Election List</h3>
           <div class="pull-right">
-            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter
+            <button class="btn btn-default btn-xs btn-filter">
+              <span class="glyphicon glyphicon-filter"></span> Add New Election
             </button>
           </div>
         </div>
         <table class="table container">
           <thead>
           <tr class="filters hide">
-            <th><input type="text" class="form-control" placeholder="ELECTION ID" disabled></th>
+            <th><input type="text" class="form-control" placeholder="ELECTION TYPE ID" disabled></th>
             <th><input type="text" class="form-control" placeholder="ELECTION TYPE" disabled></th>
-            <th><input type="text" class="form-control" placeholder="toActive?" disabled></th>
+            <th><input type="text" class="form-control" placeholder="Confirm?" disabled></th>
           </tr>
           </thead>
           <tbody>
@@ -30,7 +31,7 @@
                     class="t-btn t-btn-ex-small event-btn-2"
                     data-toggle="modal"
                     (click)="getElection(election)"
-                    data-target="#myModal2">To Active
+                    data-target="#myModal2">To Confirm
             </button>
 
           </tr>
@@ -64,18 +65,23 @@
           <tr class="filters hide">
             <th>ELECTION ID</th>
             <th>ELECTION TYPE</th>
-            <th>Delete</th>
+            <th>is Active</th>
+            <th>To Activate</th>
           </tr>
           </thead>
           <tbody>
 
           <tr *ngFor="let election of registeredElection">
-            <td>{{election.electionTypeModel.id}}</td>
+            <td>{{election.id}}</td>
             <td>{{election.electionTypeModel.type}}</td>
+            <td *ngIf="election.active" class="text-center">
+              <span class="dot"></span>
+            </td>
             <button mat-button
-                    class="btn-danger t-btn-ex-small event-btn-2 "
+                    (click)="getActiveId(election.id)"
+                    class="btn-secondary t-btn-ex-small event-btn-2 "
                     data-toggle="modal"
-                    data-target="#myDeleteModal">delete
+                    data-target="#myDeleteModal">Activate
             </button>
 
           </tr>
@@ -93,8 +99,6 @@
  if it is registered we want to tell
  user details-->
 <div class="modal fade"
-     [ngClass]="election?'show':''"
-     [style]="{'display':election?'block':'none'}"
      id="myModal2"
      tabindex="-1"
      role="dialog"
@@ -102,32 +106,31 @@
      aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModal2Label">Election Full details</h4>
-        <button type="button" class="close"
-                data-dismiss="modal"
-                aria-label="Close"><span aria-hidden="true">×</span>
-        </button>
-      </div>
+<!--      <div class="modal-header">-->
+<!--        <h4 class="modal-title" id="myModal2Label">Election Full details</h4>-->
+<!--        <button type="button" class="close"-->
+<!--                data-dismiss="modal"-->
+<!--                aria-label="Close"><span aria-hidden="true">×</span>-->
+<!--        </button>-->
+<!--      </div>-->
       <div class="modal-body">
-        <form [ngClass]="election?'show':''"
-              [style]="{'display':election?'block':'none'}">
+        <form >
           <div class="container">
             <div class="row">
               <div class="col-12">
                 <div class="card">
 
-                  <div class="card-body" *ngIf="registeredElection.length<1">
+                  <div class="card-body">
                     <div class="card-title mb-4">
                       <div class="d-flex justify-content-start">
                         <div class="userData ml-3">
                           <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold">{{this.election.type}}</h2>
                         </div>
-                        <div class="userData ml-3"
-                        *ngIf="registeredElection.length>0">
-                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
-                            href="javascript:void(0);">already one election have registered</a></h2>
-                        </div>
+<!--                        <div class="userData ml-3"-->
+<!--                        *ngIf="registeredElection.length>0">-->
+<!--                          <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a-->
+<!--                            href="javascript:void(0);">already one election have registered</a></h2>-->
+<!--                        </div>-->
 
                         <div class="ml-auto">
                           <input type="button" class="btn btn-primary d-none" id="btnDiscard" value="Discard Changes"/>
@@ -189,7 +192,7 @@
 </div>
 
 
-<!--detete model-->
+<!--Active model-->
 <div class="modal fade" id="myDeleteModal"
      tabindex="-1" role="dialog"
      aria-labelledby="myModal2Label"
@@ -197,16 +200,16 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" >Delete</h4>
+        <h4 class="modal-title" >Activate</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
         </button>
       </div>
       <div class="modal-body">
         <form>
-          Are you sure want to Delete this?
+          Are you sure want to Active this?
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <button (click)="dropElection(registeredElection[0].electionTypeModel.id)" type="button"
+            <button (click)="activeElection()" type="button"
                     data-dismiss="modal"
                     class="btn btn-add">Yes
             </button>

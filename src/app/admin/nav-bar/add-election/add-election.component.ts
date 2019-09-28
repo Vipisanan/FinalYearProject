@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AddElectionService} from "./add-election.service";
 import {typeIsOrHasBaseType} from "tslint/lib/language/typeUtils";
 
+
 @Component({
   selector: 'app-add-election',
   templateUrl: './add-election.component.html',
@@ -11,6 +12,7 @@ export class AddElectionComponent implements OnInit {
   private electionList: any;
   private registeredElection: any;
   private election:any;
+  public id:number;
 
   constructor(private service:AddElectionService) { }
 
@@ -50,9 +52,24 @@ export class AddElectionComponent implements OnInit {
           }
         });
   }
+  getActiveId(id){
+    this.id = id;
+    console.log(this.id);
+  }
 
-  dropElection(id) {
-console.log(id);
+  activeElection() {
+    this.service.activeElection(this.id)
+      .subscribe(
+        reData => {
+          console.log(reData);
+          if (reData.statusDescription == "Success") {
+            alert(reData.statusDescription + "Successfully Activated")
+          }else {
+            alert(reData.statusDescription + "try again");
+            // alert("")
+          }
+        });
+console.log(this.id);
   }
 
   getElection(election: any) {
