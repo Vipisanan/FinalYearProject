@@ -11,6 +11,7 @@ export class CandidateListService {
   private getAllCandidateURL=environment.apiBaseUrl + '/candidate';
   private partyNominationURL=environment.apiBaseUrl + '/candidate/nomination/';
   private getAllNominatedCandidateURL=environment.apiBaseUrl + '/candidate/nominated-candidate';
+  private generateCandidateNoURL=environment.apiBaseUrl + '/candidate/generate-no';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -35,6 +36,15 @@ export class CandidateListService {
     return this.httpClient.get(this.partyNominationURL+cid+'/'+pid)
       .pipe(
         tap(x => console.log('fetch partyNomination list data')),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
+  generateCandidateNo() :Observable<any> {
+    return this.httpClient.get(this.generateCandidateNoURL)
+      .pipe(
+        tap(x => console.log('fetch generateCandidateNo list data')),
+        // map(value => value['content']),
         catchError(this.handleError('can not get data.'))
       );
   }

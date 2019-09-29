@@ -48,4 +48,18 @@ export class CandidateListComponent implements OnInit {
           this.nominatedCandidate=reData;
         });
   }
+
+  generateCandidateNo() {
+    this.service.generateCandidateNo()
+      .subscribe(
+        reData => {
+          console.log(reData);
+          // this.nominatedCandidate=reData;
+          if (reData.statusDescription == "Success") {
+            alert(reData.statusDescription + "Successfully candidate  number generated")
+          }else {
+            alert(reData.statusDescription);
+          }
+        });
+  }
 }

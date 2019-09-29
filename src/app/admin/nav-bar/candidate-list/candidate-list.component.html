@@ -63,7 +63,8 @@
         <div class="panel-heading">
           <h3 class="panel-title">Nominated Candidate List</h3>
           <div class="pull-right">
-            <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filter
+            <button class="btn btn-default btn-xs btn-filter btn-info"
+            (click)="generateCandidateNo()">Generate Candidate No
             </button>
           </div>
         </div>
@@ -73,6 +74,7 @@
             <th>Candidate ID</th>
             <th>Party Name</th>
             <th>Candidate Name</th>
+            <th>Candidate Number</th>
             <th>Candidate mobile no</th>
 <!--            <th><input type="text" class="form-control" placeholder="Nominate?" disabled></th>-->
           </tr>
@@ -83,6 +85,7 @@
             <td>{{data.id}}</td>
             <td>{{data.candidateModel.partyModel.name}}</td>
             <td>{{data.candidateModel.name}}</td>
+            <td>{{data.candidateModel.no}}</td>
             <td>{{data.candidateModel.pno}}</td>
             <!--            <td>yes or no</td>-->
 
