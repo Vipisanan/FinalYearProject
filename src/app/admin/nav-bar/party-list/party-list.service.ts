@@ -27,6 +27,7 @@ export class PartyListService {
   }
 
   partyNomination(electionId: any, id: any):Observable<any> {
+    console.log(electionId , id);
     return this.httpClient.get(this.partyNominationURL+electionId +'/'+id)
       .pipe(
         tap(x => console.log('fetch party list data')),

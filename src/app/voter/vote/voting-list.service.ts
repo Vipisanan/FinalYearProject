@@ -14,7 +14,6 @@ export class VotingListService {
 
 
   getVotingList():Observable<any>{
-    console.log("aaaaaaaaaaaaaaaaaaaaaa");
     return this.httpClient.get(this.getUrl)
       .pipe(
         tap(data => console.log('fetched get voting list')),

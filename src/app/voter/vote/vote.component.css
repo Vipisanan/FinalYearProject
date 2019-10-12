@@ -9,15 +9,21 @@ table {
   width: 80px;
   height: 80px;
 }
-
-::ng-deep .mat-checkbox .mat-checkbox-frame {
-  border-color: black;
-  width: 40px;
-  height: 40px;
+/*check box*/
+@supports (zoom:2) {
+  input[type=checkbox]{
+    zoom: 2;
+  }
 }
-
-::ng-deep .mat-checkbox-checked .mat-checkbox-background {
-  background-color: black !important;
-  width: 40px;
-  height: 40px;
+@supports not (zoom:2) {
+  input[type=checkbox]{
+    transform: scale(2);
+    margin: 15px;
+  }
+}
+label{
+  /* fix vertical align issues */
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 10px;
 }

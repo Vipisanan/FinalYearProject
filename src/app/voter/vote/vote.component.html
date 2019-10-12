@@ -14,63 +14,23 @@
       <th scope="col">Select</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-      <th class="row">1</th>
-      <td class="col-lg-5">
-        <h5>Tamil</h5>
-        <h5>English</h5>
-        <h5>Sinhala</h5>
-      </td>
+    <tbody *ngIf="votingList">
+    <tr *ngFor="let list of votingList">
+      <th class="row">{{list.candidateModel.no}}</th>
+      <td class="col-lg-5">{{list.candidateModel.partyModel.name}}</td>
       <td class="col-lg-4">
         <img class="party-logo" src="/assets/img/party-logo/tna-house-vote-logo.jpg" alt="">
       </td>
       <td class="col-lg-3">
-        <mat-checkbox class=""></mat-checkbox>
+        <input #checkBox class="pvq-create-checkbox"
+               type="checkbox"
+               name="{{list.candidateModel.id}}"
+               (change)="checkedState($event)"
+               >
       </td>
     </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td class="align-middle">
-        <mat-checkbox >Check me!</mat-checkbox>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>
-        <mat-checkbox>Select here</mat-checkbox>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>
-        <mat-checkbox>Select here</mat-checkbox>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>
-        <mat-checkbox>Select here</mat-checkbox>
-      </td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>
-        <mat-checkbox>Select here</mat-checkbox>
-      </td>
-    </tr>
+
     </tbody>
   </table>
 </div>
-
 
