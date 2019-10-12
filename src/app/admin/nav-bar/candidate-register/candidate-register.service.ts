@@ -11,6 +11,7 @@ export class CandidateRegisterService {
 
   getPartyURL = environment.apiBaseUrl + '/party';
   addCandidateURL = environment.apiBaseUrl + '/candidate';
+  getActiveElectionURL =environment.apiBaseUrl + '/election/get-all-active-election';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -31,6 +32,15 @@ export class CandidateRegisterService {
       .pipe(
         tap(x => console.log('fetch party color data')),
         map(data => data),
+        catchError(this.handleError('can not get data.'))
+      );
+  }
+
+  getAllActiveElectionList() :Observable<any>{
+    return this.httpClient.get(this.getActiveElectionURL)
+      .pipe(
+        tap(x => console.log('fetch party color data')),
+        map(value => value['content']),
         catchError(this.handleError('can not get data.'))
       );
   }

@@ -32,7 +32,7 @@ export class PartyListComponent implements OnInit {
         });
   }
 
-  getPartyId(party: any) {
+  getParty(party: any) {
 console.log(party);
     this.party = party;
   }

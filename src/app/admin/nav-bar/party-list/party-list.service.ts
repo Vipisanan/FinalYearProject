@@ -10,7 +10,7 @@ import {catchError, map, tap} from "rxjs/operators";
 export class PartyListService {
 
   getUrl = environment.apiBaseUrl + '/party';
-  getAllNominatedPartyUrl = environment.apiBaseUrl + '/party';
+  getAllNominatedPartyUrl = environment.apiBaseUrl + '/nomi-party';
   partyNominationURL = environment.apiBaseUrl + '/party/nomination/';
   getAllActiveElectionURL = environment.apiBaseUrl + '/election/get-all-active-election/';
   // "nomination/{eId}/{pId}"

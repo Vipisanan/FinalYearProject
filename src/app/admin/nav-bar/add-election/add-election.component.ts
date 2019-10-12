@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AddElectionService} from "./add-election.service";
-import {typeIsOrHasBaseType} from "tslint/lib/language/typeUtils";
 
 
 @Component({
@@ -72,14 +71,13 @@ export class AddElectionComponent implements OnInit {
 console.log(this.id);
   }
   deActiveElection(){
-
     this.service.deActiveElection(this.id)
       .subscribe(
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
             alert(reData.statusDescription + "Successfully Deactivated")
-          }else {
+          } else {
             alert(reData.statusDescription);
           }
         });

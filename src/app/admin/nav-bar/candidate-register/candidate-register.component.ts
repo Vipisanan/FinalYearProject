@@ -11,6 +11,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['President Election', 'Lok sabha election', 'Parliament Election'];
+  activeElectionModel: any;
   partyModel: any;
   candidateForm: FormGroup;
 
@@ -20,6 +21,7 @@ export class CandidateRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getPartyName();
+    this.getAllActiveElectionList();
 
     this.candidateForm = this.formbuilder.group({
       name: new FormControl('', Validators.required),
@@ -28,6 +30,17 @@ export class CandidateRegisterComponent implements OnInit {
       pno: new FormControl('', Validators.required)
       // logoUrl: new FormControl('default')
     });
+  }
+
+  getAllActiveElectionList(){
+    this.service.getAllActiveElectionList()
+      .subscribe(
+        value => {
+          this.activeElectionModel = value;
+          console.log(this.activeElectionModel);
+          console.log(this.activeElectionModel[0].electionTypeModel.type);
+        },
+      );
   }
 
   getPartyName() {

@@ -38,7 +38,7 @@
             <button mat-button
                     class="t-btn t-btn-ex-small event-btn-2"
                     data-toggle="modal"
-                    (click)="getPartyId(party)"
+                    (click)="getParty(party)"
                     data-target="#myModal2">To Active
             </button>
 
@@ -78,8 +78,8 @@
 
           <tr *ngFor="let party of nominatedElection">
             <td>{{party.id}}</td>
-            <td>{{party.name}}</td>
-            <td>{{party.color.colour}}</td>
+            <td>{{party.partyModel.name}}</td>
+            <td>{{party.partyModel.color.colour}}</td>
             <!--            <td>yes or no</td>-->
 
 <!--            <button mat-button-->
@@ -165,7 +165,7 @@
                                aria-labelledby="basicInfo-tab">
 
 
-                            <div class="row">
+                            <div class="row" *ngIf="party">
                               <div class="col-sm-3 col-md-2 col-5">
                                 <label style="font-weight:bold;">Party ID</label>
                               </div>
@@ -175,7 +175,7 @@
                             </div>
                             <hr/>
 
-                            <div class="row">
+                            <div class="row" *ngIf="party">
                               <div class="col-sm-3 col-md-2 col-5">
                                 <label style="font-weight:bold;">Party Color</label>
                               </div>

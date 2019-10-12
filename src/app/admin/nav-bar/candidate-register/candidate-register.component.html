@@ -23,17 +23,20 @@
             </td>
           </tr>
         </table>
+        <div  >
+          <mat-form-field class="example-full-width">
+            <input [formControl]="myControl" [matAutocomplete]="auto" aria-label="Number" matInput
+                   placeholder="Election type"
+                   type="text">
+            <mat-autocomplete  #auto="matAutocomplete">
+              <mat-option *ngFor="let option of activeElectionModel" [value]="activeElectionModel[0].electionTypeModel.type">
+                {{option.electionTypeModel.type}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
 
-        <mat-form-field class="example-full-width">
-          <input [formControl]="myControl" [matAutocomplete]="auto" aria-label="Number" matInput
-                 placeholder="Election type"
-                 type="text">
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of options" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+
 
 
         <table cellspacing="0" class="example-full-width">
