@@ -13,11 +13,14 @@ import {VoterListComponent} from "./admin/nav-bar/voter-list/voter-list.componen
 import {UserListComponent} from "./admin/nav-bar/user-list/user-list.component";
 import {PartyListComponent} from "./admin/nav-bar/party-list/party-list.component";
 import {CandidateListComponent} from "./admin/nav-bar/candidate-list/candidate-list.component";
+import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
+import {AuthGuardService} from "./guards/auth-guard.service";
 
 const routes: Routes = [
   {
     path: '',
     component: VoterComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -63,13 +66,14 @@ const routes: Routes = [
       {
         path: 'user-list',
         component: UserListComponent
-      }
+      },
     ]
   },
   {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

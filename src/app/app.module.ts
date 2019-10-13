@@ -30,6 +30,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UserListComponent } from './admin/nav-bar/user-list/user-list.component';
 import { PartyListComponent } from './admin/nav-bar/party-list/party-list.component';
 import { CandidateListComponent } from './admin/nav-bar/candidate-list/candidate-list.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -50,7 +51,8 @@ import { CandidateListComponent } from './admin/nav-bar/candidate-list/candidate
     VoterListComponent,
     UserListComponent,
     PartyListComponent,
-    CandidateListComponent
+    CandidateListComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
