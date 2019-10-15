@@ -68,4 +68,9 @@ export class VoteComponent implements OnInit {
 
   }
 
+  logOut() {
+    localStorage.removeItem('isLogin');
+    console.log(localStorage.getItem('isLogin'));
+    window.location.reload();
+  }
 }

@@ -16,7 +16,7 @@
 
   <div class="col-sm-12 col-md-8 col-lg-8">
 
-      <form class="example-form" [formGroup]="voterForm" (ngSubmit)="onSubmit() ">
+      <form  class="example-form" [formGroup]="voterForm" (ngSubmit)="onSubmit() ">
 
         <div class="row">
           <div class="col-sm-12 col-md-7 col-lg-7">
@@ -32,9 +32,11 @@
           </div>
 
           <div class="col-sm-12 col-md-5 col-lg-5">
-            <img src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                 alt="Photo of a Shiba Inu" style="width: 120px; height: 120px; margin-top: 10px; margin-left: 50px">
-
+            <img [src]="imgURL" *ngIf="imgURL"
+                 style="width: 120px; height: 120px; margin-top: 10px; margin-left: 50px">
+            <span style="color:red;" *ngIf="message">{{message}}</span>
+            <input #file type="file" accept='image/*'
+                   (change)="preview($event ,file.files)" />
           </div>
         </div>
 

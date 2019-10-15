@@ -4,6 +4,6 @@ export class VoterRegisterModel {
               public nicNo:number,
               public gsDivisionId:number,
               public specificDetails:string,
-              public imageUrl:string,
-              public userType:number,){}
+              public imageUrl:File,
+                public userType:number,){}
 }

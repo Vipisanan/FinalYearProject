@@ -21,6 +21,7 @@ export class VoterRegisterComponent implements OnInit {
   voterRegisterModel:VoterRegisterModel[];
   voterForm: FormGroup;
   isSubitted = false;
+  image: File;
 
   myControl = new FormControl();
   options: string[] = ['Mullaitivu', 'Vavuniya', 'Colombo'];
@@ -36,7 +37,7 @@ export class VoterRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.openDialog();
+    // this.openDialog();
     this.voterForm = this.formbuilder.group({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -70,38 +71,67 @@ export class VoterRegisterComponent implements OnInit {
   //for register voter
   onSubmit() {
     this.isSubitted = true;
-
     // stop here if form is invalid
     if (this.voterForm.invalid) {
       return;
     }
-
     console.log('onSubmit method call');
-    this.openDialog();
     console.log(this.voterForm.value);
-    this.voterRegisterModel = this.voterForm.value;
-    // @ts-ignore
-    this.voterRegisterModel.userType = 1;
-
-    console.log(this.voterRegisterModel);
-    this.voterRegister();
-
+    this.service.voterRegister(this.voterForm , this.image)
+        .subscribe(
+          reData => {
+            console.log(reData);
+            if (reData.statusDescription == "Success") {
+              alert(reData.statusDescription + "Success")
+            }else {
+              alert(reData.statusDescription + "try again");
+            }
+          });
   }
 
-  voterRegister(){
-    this.service.voterRegister(this.voterRegisterModel)
-      .subscribe(
-        reData => {
-          console.log(reData);
-          if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Success")
-          }else {
-            alert(reData.statusDescription + "try again");
-          }
-        });
+  // voterRegister(){
+  //   console.log(this.voterRegisterModel , this.image);
+  //   this.service.voterRegister(this.voterRegisterModel , this.image)
+  //     .subscribe(
+  //       reData => {
+  //         console.log(reData);
+  //         if (reData.statusDescription == "Success") {
+  //           alert(reData.statusDescription + "Success")
+  //         }else {
+  //           alert(reData.statusDescription + "try again");
+  //         }
+  //       });
+  //
+  // }
 
+
+  public imagePath;
+  imgURL: any;
+  public message: string;
+
+  preview(event , files) {
+    this.image=event.target.files[0];
+    console.log(this.image);
+
+    if (files.length === 0)
+      return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
   }
 }
+
+
 
 @Component({
   selector: 'dialog-data-example-dialog',

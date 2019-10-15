@@ -9,13 +9,13 @@
 
     <div class="col-sm-10 col-md-4 col-lg-4" style="margin-top: 200px">
 
-      <form class="example-form">
+      <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Email" value="">
+          <input matInput placeholder="Email" formControlName="name" value="">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input  matInput type="password" placeholder="Password" value="">
+          <input  matInput type="password" formControlName="password" placeholder="Password" value="">
         </mat-form-field>
 
 
