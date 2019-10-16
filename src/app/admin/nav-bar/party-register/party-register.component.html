@@ -46,10 +46,13 @@
                   <mat-card-header>
                     <mat-card-subtitle>Party logo</mat-card-subtitle>
                   </mat-card-header>
-                  <img alt="Photo of a Shiba Inu" mat-card-image
-                       src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+
+                    <img [src]="imgURL" *ngIf="imgURL"
+                         style="width: 120px; height: 120px; margin-top: 10px;">
+                    <span style="color:red;" *ngIf="message">{{message}}</span>
                   <mat-card-actions>
-                    <input mat-button type="file" placeholder="Add image" value="" />
+                    <input #file type="file" accept='image/*'
+                           (change)="preview($event ,file.files)"/>
                   </mat-card-actions>
                 </mat-card>
               </td>

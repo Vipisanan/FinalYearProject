@@ -10,7 +10,7 @@ import {catchError, map, tap} from "rxjs/operators";
 export class PartyRegisterService {
 
   getColorURL = environment.apiBaseUrl + '/party/color';
-  addPartyURL = environment.apiBaseUrl + '/party';
+  addPartyURL = environment.apiBaseUrl + '/party/with-logo';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -25,9 +25,17 @@ export class PartyRegisterService {
 
   }
 
-  saveParty(value: any): Observable<any> {
+  saveParty(value: any , image:File): Observable<any> {
+    console.log(image);
     console.log(value);
-    return this.httpClient.post<any>(this.addPartyURL, value)
+    let formData = new FormData();
+    formData.append('name' , value.name);
+    formData.append('partyColourId' , value.partyColourId);
+    formData.append('logo' , image);
+
+
+
+    return this.httpClient.post<any>(this.addPartyURL, formData)
       .pipe(
         tap(x => console.log('fetch party color data')),
         map(data => data),
