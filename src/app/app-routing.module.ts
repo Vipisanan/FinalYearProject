@@ -20,7 +20,6 @@ const routes: Routes = [
   {
     path: '',
     component: VoterComponent,
-    canActivate: [AuthGuardService],
     children: [
       {
         path: '',
@@ -31,6 +30,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [AuthGuardService],
     children: [
       {
         path: 'voter-register',

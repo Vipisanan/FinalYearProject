@@ -26,9 +26,16 @@
       <li class="nav-item">
         <a mat-button class="nav-link" routerLink="voter-list">Voter list</a>
       </li>
+
     </ul>
     <span class="navbar-text">
-      Navbar text with an inline element
+      <div>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+        <a mat-button class="nav-link bg-danger" (click)="logOut()" routerLink="">Logout</a>
+      </li>
+        </ul>
+      </div>
     </span>
   </div>
 </nav>

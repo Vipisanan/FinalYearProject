@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "./auth.service";
-import {HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
 
     if (this.loginForm.value.name === "admin@gmail.com" && this.loginForm.value.password === "admin"){
       localStorage.setItem('isLogin' , "yes");
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('admin');
     }else {
       alert("user name or password error try again");
     }
