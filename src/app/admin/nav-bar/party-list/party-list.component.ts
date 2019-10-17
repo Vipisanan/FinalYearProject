@@ -55,7 +55,9 @@ console.log(party);
     this.electionId = id;
     console.log(id , "id")
   }
+
   getAllActiveElection(){
+    console.log("resisted election");
     this.service.getAllActiveElection()
       .subscribe(
         reData => {
