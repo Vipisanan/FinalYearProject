@@ -9,6 +9,7 @@ import {catchError, map, tap} from "rxjs/operators";
 })
 export class VotingListService {
   getUrl = environment.apiBaseUrl + '/voting/election';
+  checkFingerPrintUrl = environment.apiBaseUrl + '/user/find-by-finger-print/';
 
   constructor(private httpClient:HttpClient) { }
 
@@ -21,6 +22,17 @@ export class VotingListService {
         catchError(this.handleError('register data', [])),
       );
   }
+
+  checkFingerPrint(fingerPrint: String) :Observable<any>{
+    console.log(this.checkFingerPrintUrl+fingerPrint);
+    return this.httpClient.get(this.checkFingerPrintUrl+fingerPrint)
+      .pipe(
+        tap(data => console.log('fetched get voterID')),
+        map(data => data['content']),
+        catchError(this.handleError('voterID data', [])),
+      );
+  }
+
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

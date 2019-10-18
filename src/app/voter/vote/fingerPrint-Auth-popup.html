@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Finger Print</h1>
+<mat-dialog-content class="mat-typography">
+  <div mat-dialog-content class="row">
+    <div class="col-sm-12 col-md-7 col-lg-7">
+      <mat-form-field class="hide example-full-width">
+        <mat-label>Finger Print here</mat-label>
+        <input matInput placeholder="First name" (blur)="getFingerPrint($event)" formControlName="firstName" value="">
+      </mat-form-field>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

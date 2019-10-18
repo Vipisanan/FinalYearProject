@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {VotingListService} from "./voting-list.service";
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-vote',
@@ -17,12 +18,13 @@ export class VoteComponent implements OnInit {
   check: any = false;
 
 
-  constructor(private service: VotingListService) {
+  constructor(private service: VotingListService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
     this.getList();
-    console.log("ssssssssssssssss0");
+    this.openDialog();
   }
 
   public getList() {
@@ -69,4 +71,47 @@ export class VoteComponent implements OnInit {
   }
 
 
+  openDialog() {
+    this.dialog.open(FingerPrintLogin, {});
+  }
+
+
+}
+
+
+//popUp
+@Component({
+  selector: 'login-popup',
+  templateUrl: 'fingerPrint-Auth-popup.html',
+})
+export class FingerPrintLogin {
+  public fingerPrint: String;
+  public voterId: String;
+  public isVoter: String[];
+
+  constructor(private service: VotingListService, public dialog: MatDialog) {
+  }
+
+  getFingerPrint($event: Event) {
+    // console.log(event.target[0].fingerPrint);
+    this.fingerPrint = event.target.value;
+    this.checkFingerPrint(this.fingerPrint);
+
+  }
+
+  checkFingerPrint(fingerPrint: String) {
+    this.service.checkFingerPrint(fingerPrint)
+      .subscribe(
+        reData => {
+          this.voterId = reData;
+          this.isVoter = this.voterId.split('-', 3);
+          if (this.isVoter[0] === 'VOTER') {
+            this.dialog.closeAll();
+          }
+          if (this.isVoter[0] === 'NO_USER_FOUND') {
+            alert("Finger print Not match!")
+          }
+          console.log(reData);
+        });
+  }
 }
