@@ -15,6 +15,7 @@ export class VoteComponent implements OnInit {
   private answers: any;
   private createMode: boolean;
   private updateMode: boolean;
+  candidateId: Array<number> = [];
   question: any;
   check: any = false;
 
@@ -37,8 +38,8 @@ export class VoteComponent implements OnInit {
         });
   }
 
-  onVote(id: any) {
-    console.log(id);
+  onVote() {
+    console.log('candidateId is ' + this.candidateId);
   }
 
   checked(checkBox) {
@@ -53,18 +54,28 @@ export class VoteComponent implements OnInit {
       return true;
     }
   }
-  checkedState(event){
+
+  checkedState(event, candidateId) {
     let index: number = event.target.name;
     console.log('Index is ' + index);
-    console.log('checkBox.checked is ' ,event.target.checked );
+    // console.log('checkBox.checked is ' ,event.target.checked );
     if(event.target.checked === true){
-      console.log('checkBox.checked is IF IT"S TRUE ' ,event.target.checked );
-      if(this.counter < 1){
-        this.counter++
+      if (this.counter < 1) {
+        //TODO here add the candidate id
+        this.candidateId.push(candidateId);
+        console.log('candidateId is ' + this.candidateId);
+        this.counter++;
       }else{
         event.target.checked = false;
       }
     }else if(this.counter>0){
+      //TODO here remove the candidate id
+      for ( var i = 0; i < this.candidateId.length; i++){
+        if (this.candidateId[i] === candidateId){
+          this.candidateId.splice(i, 1);
+        }
+      }
+      console.log('candidateId is ' + this.candidateId);
       console.log('checkBox.checked is IF IT"S FALSE ' ,event.target.checked );
       this.counter--;
     }
@@ -75,7 +86,6 @@ export class VoteComponent implements OnInit {
   openDialog() {
     this.dialog.open(FingerPrintLogin, {});
   }
-
 
 }
 

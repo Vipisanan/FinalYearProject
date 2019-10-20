@@ -49,6 +49,7 @@ export class ResultComponent implements OnInit {
 
   }
 
+  //not working
   chart(){
     let chart2 = c3.generate({
       bindto: '#chart',

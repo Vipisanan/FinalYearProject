@@ -28,9 +28,10 @@
         <input #checkBox class="pvq-create-checkbox"
                type="checkbox"
                name="{{list.candidateModel.id}}"
-               (change)="checkedState($event)" >
+               (change)="checkedState($event ,list.candidateModel.id )" >
       </td>
     </tr>
+    <button class="container btn btn-primary" (click)="onVote()">VOTE</button>
     </tbody>
   </table>
 </div>
