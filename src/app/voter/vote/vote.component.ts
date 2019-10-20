@@ -92,7 +92,7 @@ export class FingerPrintLogin {
   constructor(private service: VotingListService, public dialog: MatDialog) {
   }
 
-  getFingerPrint($event: Event) {
+  getFingerPrint(event: Event) {
     // console.log(event.target[0].fingerPrint);
     this.fingerPrint = event.target.value;
     this.checkFingerPrint(this.fingerPrint);

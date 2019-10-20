@@ -1,14 +1,10 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoterRegisterService} from './voter-register.service';
 import {GsDivisionModel} from '../../models/GsDivisionModel';
 import {MatDialog} from '@angular/material';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {VoterRegisterModel} from "../../models/VoterRegisterModel";
-
-export interface DialogData {
-  animal: 'panda' | 'unicorn' | 'lion';
-}
 
 @Component({
   selector: 'app-voter-register',
@@ -61,11 +57,7 @@ export class VoterRegisterComponent implements OnInit {
   }
 
   openDialog() {
-    this.dialog.open(DialogDataExampleDialog, {
-      data: {
-        animal: 'panda'
-      }
-    });
+    this.dialog.open(DialogDataExampleDialog);
   }
 
   //for register voter
@@ -138,6 +130,8 @@ export class VoterRegisterComponent implements OnInit {
   templateUrl: 'dialog-data-example-dialog.html',
 })
 export class DialogDataExampleDialog {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+  constructor(private dialogRef: MatDialogRef<DialogDataExampleDialog>) {
+    dialogRef.disableClose = true;
   }
+
 }
