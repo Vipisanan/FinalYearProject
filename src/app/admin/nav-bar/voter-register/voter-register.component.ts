@@ -1,9 +1,9 @@
-import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {VoterRegisterService} from './voter-register.service';
 import {GsDivisionModel} from '../../models/GsDivisionModel';
 import {MatDialog} from '@angular/material';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MatDialogRef} from '@angular/material/dialog';
 import {VoterRegisterModel} from "../../models/VoterRegisterModel";
 
 @Component({
@@ -74,28 +74,13 @@ export class VoterRegisterComponent implements OnInit {
           reData => {
             console.log(reData);
             if (reData.statusDescription == "Success") {
+              this.voterForm.reset();
               alert(reData.statusDescription + "Success")
             }else {
               alert(reData.statusDescription + "try again");
             }
           });
   }
-
-  // voterRegister(){
-  //   console.log(this.voterRegisterModel , this.image);
-  //   this.service.voterRegister(this.voterRegisterModel , this.image)
-  //     .subscribe(
-  //       reData => {
-  //         console.log(reData);
-  //         if (reData.statusDescription == "Success") {
-  //           alert(reData.statusDescription + "Success")
-  //         }else {
-  //           alert(reData.statusDescription + "try again");
-  //         }
-  //       });
-  //
-  // }
-
 
   public imagePath;
   imgURL: any;
@@ -122,8 +107,6 @@ export class VoterRegisterComponent implements OnInit {
     }
   }
 }
-
-
 
 @Component({
   selector: 'dialog-data-example-dialog',

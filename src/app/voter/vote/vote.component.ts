@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {VotingListService} from "./voting-list.service";
 import {MatDialog} from '@angular/material';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-vote',
@@ -89,10 +90,13 @@ export class FingerPrintLogin {
   public voterId: String;
   public isVoter: String[];
 
-  constructor(private service: VotingListService, public dialog: MatDialog) {
+  constructor(private service: VotingListService,
+              public dialog: MatDialog,
+              private dialogRef: MatDialogRef<FingerPrintLogin>) {
+    dialogRef.disableClose = true;
   }
 
-  getFingerPrint(event: Event) {
+  getFingerPrint(event: any) {
     // console.log(event.target[0].fingerPrint);
     this.fingerPrint = event.target.value;
     this.checkFingerPrint(this.fingerPrint);
