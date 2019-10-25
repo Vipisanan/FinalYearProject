@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AddElectionService} from "./add-election.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -13,7 +14,8 @@ export class AddElectionComponent implements OnInit {
   private election:any;
   public id:number;
 
-  constructor(private service:AddElectionService) { }
+  constructor(private service:AddElectionService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getAllTypesOfElection();
@@ -44,7 +46,7 @@ export class AddElectionComponent implements OnInit {
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully permission denied")
+            this.snackBar.open("Successfully permission denied" , "OK");
           }else {
             alert(reData.statusDescription + "try again");
             // alert("")
@@ -62,10 +64,9 @@ export class AddElectionComponent implements OnInit {
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully Activated")
+            this.snackBar.open("Successfully Activated" , "OK");
           }else {
             alert(reData.statusDescription);
-            // alert("")
           }
         });
 console.log(this.id);
@@ -76,7 +77,7 @@ console.log(this.id);
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully Deactivated")
+            this.snackBar.open("Successfully Deactivated" , "OK" );
           } else {
             alert(reData.statusDescription);
           }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {PartyRegisterService} from "./party-register.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 
 @Component({
@@ -16,7 +17,8 @@ export class PartyRegisterComponent implements OnInit {
   image:File;
 
   constructor(private formbuilder: FormBuilder,
-              private service:PartyRegisterService) { }
+              private service:PartyRegisterService,
+              private snackBar: MatSnackBar) { }
 
   get f() {
     return this.partyForm.controls;
@@ -47,7 +49,7 @@ export class PartyRegisterComponent implements OnInit {
       .subscribe(
         value => {
           if (value.statusDescription =="Success"){
-            alert(value.statusDescription)
+            this.snackBar.open("Successfully party registered")
           }else {
             alert(value.statusDescription + " | Already this color was selected!")
           }

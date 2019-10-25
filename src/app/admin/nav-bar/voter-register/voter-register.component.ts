@@ -5,6 +5,7 @@ import {GsDivisionModel} from '../../models/GsDivisionModel';
 import {MatDialog} from '@angular/material';
 import {MatDialogRef} from '@angular/material/dialog';
 import {VoterRegisterModel} from "../../models/VoterRegisterModel";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-voter-register',
@@ -18,6 +19,7 @@ export class VoterRegisterComponent implements OnInit {
   voterForm: FormGroup;
   isSubitted = false;
   image: File;
+  durationInSeconds = 5;
 
   myControl = new FormControl();
   options: string[] = ['Mullaitivu', 'Vavuniya', 'Colombo'];
@@ -25,7 +27,8 @@ export class VoterRegisterComponent implements OnInit {
 
   constructor(private service: VoterRegisterService,
               private formbuilder: FormBuilder,
-              public dialog: MatDialog) {
+              public dialog: MatDialog,
+              private snackBar: MatSnackBar) {
   }
 
   get f() {
@@ -34,6 +37,12 @@ export class VoterRegisterComponent implements OnInit {
 
   ngOnInit() {
     // this.openDialog();
+
+    // this.snackBar.open('Message archived', 'OK' ,{
+    //   duration: 3000
+    // });
+
+// Load the given component into the snack-bar.
     this.voterForm = this.formbuilder.group({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
@@ -74,8 +83,11 @@ export class VoterRegisterComponent implements OnInit {
           reData => {
             console.log(reData);
             if (reData.statusDescription == "Success") {
+              this.snackBar.open('Successfully voter added', 'OK' ,{
+                duration: 3000
+              });
               this.voterForm.reset();
-              alert(reData.statusDescription + "Success")
+              // alert(reData.statusDescription + "Success")
             }else {
               alert(reData.statusDescription + "try again");
             }

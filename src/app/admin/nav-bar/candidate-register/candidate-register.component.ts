@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CandidateRegisterService} from "./candidate-register.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-candidate-register',
@@ -16,7 +17,8 @@ export class CandidateRegisterComponent implements OnInit {
   candidateForm: FormGroup;
 
   constructor(private service: CandidateRegisterService,
-              private formbuilder: FormBuilder) {
+              private formbuilder: FormBuilder,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -59,7 +61,7 @@ export class CandidateRegisterComponent implements OnInit {
       .subscribe(
         value => {
           if (value.statusDescription = "Success") {
-            alert(value.statusDescription)
+            this.snackBar.open("Successfully registered");
           } else {
             alert(value.statusDescription + "try again")
           }

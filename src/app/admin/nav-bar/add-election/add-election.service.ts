@@ -37,7 +37,7 @@ export class AddElectionService {
       );
   }
   registerElection(id):Observable<any> {
-    return this.httpClient.get(this.registeredElectionUrl+'/'+id)
+    return this.httpClient.get(this.registeredElectionUrl+id)
       .pipe(
         tap(data => console.log('fetched register election data')),
         map(data => data),

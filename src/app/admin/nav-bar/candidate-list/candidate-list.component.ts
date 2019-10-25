@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CandidateListService} from "./candidate-list.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-candidate-list',
@@ -9,7 +10,8 @@ import {CandidateListService} from "./candidate-list.service";
 export class CandidateListComponent implements OnInit {
   candidate:any;
   nominatedCandidate:any;
-  constructor(private service :CandidateListService) { }
+  constructor(private service :CandidateListService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.getAllCandidate();
@@ -34,7 +36,7 @@ export class CandidateListComponent implements OnInit {
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully candidate  nominated")
+            this.snackBar.open("Successfully candidate  nominated" , "OK");
           }else {
             alert(reData.statusDescription);
           }
@@ -56,7 +58,7 @@ export class CandidateListComponent implements OnInit {
           console.log(reData);
           // this.nominatedCandidate=reData;
           if (reData.statusDescription == "Success") {
-            alert(reData.statusDescription + "Successfully candidate  number generated")
+            this.snackBar.open("Successfully candidate  number generated" , "OK");
           }else {
             alert(reData.statusDescription);
           }
