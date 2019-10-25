@@ -66,7 +66,6 @@ export class VoterRegisterComponent implements OnInit {
     this.dialog.open(DialogDataExampleDialog);
   }
 
-  //for register voter
   onSubmit() {
     this.isSubitted = true;
     // stop here if form is invalid
