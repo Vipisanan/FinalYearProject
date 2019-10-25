@@ -15,7 +15,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 
 export class VoterRegisterComponent implements OnInit {
   gsDivisionDatas: GsDivisionModel[];
-  voterRegisterModel:VoterRegisterModel[];
+  voterRegisterModel: VoterRegisterModel[];
   voterForm: FormGroup;
   isSubitted = false;
   image: File;
@@ -23,7 +23,9 @@ export class VoterRegisterComponent implements OnInit {
 
   myControl = new FormControl();
   options: string[] = ['Mullaitivu', 'Vavuniya', 'Colombo'];
-
+  public imagePath;
+  imgURL: any;
+  public message: string;
 
   constructor(private service: VoterRegisterService,
               private formbuilder: FormBuilder,
@@ -36,19 +38,14 @@ export class VoterRegisterComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.openDialog();
-
-    // this.snackBar.open('Message archived', 'OK' ,{
-    //   duration: 3000
-    // });
 
 // Load the given component into the snack-bar.
     this.voterForm = this.formbuilder.group({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       gsDivisionId: new FormControl('', Validators.required),
-      nicNo: new FormControl('', [Validators.required ,
-                                                          Validators.min(12)]),
+      nicNo: new FormControl('', [Validators.required,
+        Validators.min(12)]),
       specificDetails: new FormControl('', Validators.required)
     });
     this.getAllGSDivision();
@@ -78,28 +75,24 @@ export class VoterRegisterComponent implements OnInit {
     }
     console.log('onSubmit method call');
     console.log(this.voterForm.value);
-    this.service.voterRegister(this.voterForm , this.image)
-        .subscribe(
-          reData => {
-            console.log(reData);
-            if (reData.statusDescription == "Success") {
-              this.snackBar.open('Successfully voter added', 'OK' ,{
-                duration: 3000
-              });
-              this.voterForm.reset();
-              // alert(reData.statusDescription + "Success")
-            }else {
-              alert(reData.statusDescription + "try again");
-            }
-          });
+    this.service.voterRegister(this.voterForm, this.image)
+      .subscribe(
+        reData => {
+          console.log(reData);
+          if (reData.statusDescription == "Success") {
+            this.snackBar.open('Successfully voter added', 'OK', {
+              duration: 3000
+            });
+            this.voterForm.reset();
+            // alert(reData.statusDescription + "Success")
+          } else {
+            alert(reData.statusDescription + "try again");
+          }
+        });
   }
 
-  public imagePath;
-  imgURL: any;
-  public message: string;
-
-  preview(event , files) {
-    this.image=event.target.files[0];
+  preview(event, files) {
+    this.image = event.target.files[0];
     console.log(this.image);
 
     if (files.length === 0)
