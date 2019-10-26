@@ -57,7 +57,7 @@ export class UserListComponent implements OnInit {
         reData => {
           console.log(reData);
           if (reData.statusDescription == "Success") {
-            this.snackBar.open( "Successfully permission denied" , "OK");
+            this.snackBar.open( "Successfully permission denied" , "OK" , {duration: 3000});
           }else {
             // alert(reData.statusDescription + "try again");
             alert("He/She is already voter")

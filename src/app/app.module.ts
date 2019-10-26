@@ -31,7 +31,7 @@ import {UserListComponent} from './admin/nav-bar/user-list/user-list.component';
 import {PartyListComponent} from './admin/nav-bar/party-list/party-list.component';
 import {CandidateListComponent} from './admin/nav-bar/candidate-list/candidate-list.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule} from "@angular/material/snack-bar";
 
 
 @NgModule({
@@ -82,7 +82,9 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
     FingerPrintLogin
   ],
   // exports: [MatButtonModule, MatCheckboxModule],
-  providers: [],
+  providers: [
+    {provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: {duration: 2500}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

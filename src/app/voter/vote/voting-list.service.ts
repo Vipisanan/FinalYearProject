@@ -11,6 +11,14 @@ export class VotingListService {
   getUrl = environment.apiBaseUrl + '/voting/election';
   checkFingerPrintUrl = environment.apiBaseUrl + '/user/find-by-finger-print/';
 
+  nC1;
+  nC2;
+  nC3;
+  nP1;
+  nP2;
+  nP3;
+  url;
+
   constructor(private httpClient:HttpClient) { }
 
 
@@ -31,6 +39,39 @@ export class VotingListService {
         map(data => data['content']),
         catchError(this.handleError('voterID data', [])),
       );
+  }
+
+
+  addVote(nominatedCandidateId: Array<number>, nominatedPartyId: Array<String>, voterId: string): Observable<any> {
+    this.url = null;
+    this.url = environment.apiBaseUrl + '/result/voter/' + voterId;
+    if (nominatedCandidateId.length === 1) {
+      this.url = this.url + '?cId=' + nominatedCandidateId[0];
+    }
+    if (nominatedCandidateId.length === 2) {
+      this.url = this.url + '?cId=' + nominatedCandidateId[0] + '&cId=' + nominatedCandidateId[1];
+    }
+    if (nominatedCandidateId.length === 3) {
+      this.url = this.url + '?cId=' + nominatedCandidateId[0] + '&cId=' + nominatedCandidateId[1] + '&cId=' + nominatedCandidateId[2];
+    }
+
+    if (nominatedPartyId.length === 1) {
+      this.url = this.url + '&pId=' + nominatedPartyId[0];
+    }
+    if (nominatedPartyId.length === 2) {
+      this.url = this.url + '&pId=' + nominatedPartyId[0] + '&pId=' + nominatedPartyId[1];
+    }
+    if (nominatedPartyId.length === 3) {
+      this.url = this.url + '&pId=' + nominatedPartyId[0] + '&pId=' + nominatedPartyId[1] + '&pId=' + nominatedPartyId[2];
+    }
+    console.log("uuuuuuuuuuu", this.url);
+    return this.httpClient.get(this.url)
+      .pipe(
+        tap(data => console.log('fetched get voterID')),
+        map(data => data['content']),
+        catchError(this.handleError('vote data', [])),
+      );
+
   }
 
 

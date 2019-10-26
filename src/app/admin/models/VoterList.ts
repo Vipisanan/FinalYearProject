@@ -6,6 +6,7 @@ export class VoterList {
   public nicNo:number,
   public imageUrl:string,
   public gsDivisionName:string,
-  public userType:number
+  public userType:number,
+  public voter:boolean
   ){}
 }

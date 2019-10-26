@@ -28,8 +28,8 @@
             <th><input type="text" class="form-control" placeholder="isVoter?" disabled></th>
           </tr>
           </thead>
-          <tbody>
-          <tr *ngFor="let singleVoter of voterList">
+          <tbody  *ngFor="let singleVoter of voterList">
+          <tr *ngIf="!singleVoter.voter">
             <td>{{singleVoter.firstName}}</td>
             <td>{{singleVoter.lastName}}</td>
             <td>{{singleVoter.nicNo}}</td>
