@@ -17,8 +17,8 @@ export class ResultComponent implements OnInit {
       data: {
         // iris data from R
         columns: [
-          ['data1', 30],
-          ['data2', 120],
+          ['UNP', 30],
+          ['TNA', 120],
         ],
         type : 'pie',
         onclick: function (d, i) { console.log("onclick", d, i); },
@@ -27,25 +27,25 @@ export class ResultComponent implements OnInit {
       }
     });
 
-    setTimeout(function () {
-      chart.load({
-        columns: [
-          ["setosa", 20 , 10],
-          ["versicolor", 30],
-          ["virginica", 20],
-          ["test", 8],
-        ]
-      });
-    }, 1500);
-
-    setTimeout(function () {
-      chart.unload({
-        ids: 'data1'
-      });
-      chart.unload({
-        ids: 'data2'
-      });
-    }, 2500);
+    // setTimeout(function () {
+    //   chart.load({
+    //     columns: [
+    //       ["setosa", 20 , 10],
+    //       ["versicolor", 30],
+    //       ["virginica", 20],
+    //       ["test", 8],
+    //     ]
+    //   });
+    // }, 1500);
+    //
+    // setTimeout(function () {
+    //   chart.unload({
+    //     ids: 'data1'
+    //   });
+    //   chart.unload({
+    //     ids: 'data2'
+    //   });
+    // }, 2500);
 
   }
 
