@@ -11,8 +11,9 @@
   <table class="table">
     <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Candidate no</th>
       <th scope="col">Party name</th>
+      <th scope="col">Candidate name</th>
       <th scope="col">Party logo</th>
       <th scope="col">Select</th>
     </tr>
@@ -21,8 +22,10 @@
     <tr *ngFor="let list of votingList">
       <th class="row">{{list.candidateModel.no}}</th>
       <td class="col-lg-5">{{list.candidateModel.partyModel.name}}</td>
+      <td class="col-lg-5">{{list.candidateModel.name}}</td>
       <td class="col-lg-4">
-        <img class="party-logo" src="/assets/img/party-logo/tna-house-vote-logo.jpg" alt="">
+<!--        <img class="party-logo" src="/assets/img/party-logo/tna-house-vote-logo.jpg" alt="">-->
+        <img class="party-logo" src="https://stmichaelsknightsofcolumbus.com/wordpress/wp-content/uploads/2013/08/Photo-not-available.jpg" alt="">
       </td>
       <td class="col-lg-3">
         <input #checkBox class="pvq-create-checkbox"

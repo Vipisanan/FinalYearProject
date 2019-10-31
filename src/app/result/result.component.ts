@@ -18,7 +18,8 @@ export class ResultComponent implements OnInit {
         // iris data from R
         columns: [
           ['UNP', 30],
-          ['TNA', 120],
+          ['TNA', 70],
+          ['SLAP', 120],
         ],
         type : 'pie',
         onclick: function (d, i) { console.log("onclick", d, i); },

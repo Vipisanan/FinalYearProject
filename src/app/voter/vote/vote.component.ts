@@ -52,6 +52,7 @@ export class VoteComponent implements OnInit {
       .subscribe(
       reData => {
         console.log(reData);
+        window.location.reload();
         this.nominatedPartyId.splice(0, this.nominatedPartyId.length);
         this.snackBar.open("Successfully you'r voted");
         localStorage.removeItem("voterId");
